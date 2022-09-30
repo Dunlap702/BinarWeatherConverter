@@ -25,9 +25,10 @@ namespace BinarWeatherConverter
         readonly MainViewModel view = new();
         public MainWindow()
         {
-            InitializeComponent();
             DataContext = view;
             view.ReadFile();
+            InitializeComponent();
+            ListBox.ItemsSource = view.MyWeatherTiles;
         }
     }
 }

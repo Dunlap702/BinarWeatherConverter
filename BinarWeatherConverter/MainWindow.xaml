@@ -10,10 +10,8 @@
         Height="450" Width="800" 
         Background="SkyBlue">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock FontWeight="Bold" 
-                   FontSize="40" 
-                   HorizontalAlignment="Center"
-                   Name="tbDisplay" Width="86">
-        </TextBlock>
+        <ListBox Name="ListBox">
+
+        </ListBox>
     </StackPanel>
 </Window>

@@ -36,12 +36,15 @@ namespace BinarWeatherConverter.Models
         internal static int GetDateOne(string[] data)
         {
             var result = "";
+            int date = 0;
             foreach (var item in data)
             {
-                if (item.Contains('/'))
+                if (item.Contains('/') && !item.Contains("TN") &&
+                    !item.Contains("TX"))
                     result = item[0].ToString() + item[1].ToString();
             }
-            return Convert.ToInt32(result);
+            date = Convert.ToInt32(result);
+            return date;
         }
 
         internal static int GetDateTwo(string[] data)
@@ -49,7 +52,8 @@ namespace BinarWeatherConverter.Models
             var result = "";
             foreach (var item in data)
             {
-                if (item.Contains('/'))
+                if(item.Contains('/') && !item.Contains("TN") &&
+                    !item.Contains("TX"))
                     result = item[5].ToString() + item[6].ToString();
             }
             return Convert.ToInt32(result);
