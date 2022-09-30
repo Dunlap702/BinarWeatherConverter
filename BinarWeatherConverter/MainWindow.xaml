@@ -3,11 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BinarWeatherConverter"
+        xmlns:local="clr-namespace:BinarWeatherConverter" 
+        xmlns:models="clr-namespace:BinarWeatherConverter.Models"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Binar Weather Converter" 
+        Height="450" Width="800" 
+        Background="SkyBlue">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock FontWeight="Bold" FontSize="40" HorizontalAlignment="Center">Words of Wisdom:</TextBlock>
-        <TextBlock FontSize="30">If the weather looks bad, leave on the 0950</TextBlock>
+        <TextBlock FontWeight="Bold" 
+                   FontSize="40" 
+                   HorizontalAlignment="Center"
+                   Name="tbDisplay" Width="86">
+        </TextBlock>
     </StackPanel>
 </Window>

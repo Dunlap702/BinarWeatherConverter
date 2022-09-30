@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BinarWeatherConverter.Models;
+using BinarWeatherConverter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace BinarWeatherConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly MainViewModel view = new();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = view;
+            view.ReadFile();
         }
     }
 }
