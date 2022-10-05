@@ -25,8 +25,6 @@ namespace BinarWeatherConverter.Models
                 }
                 sr.Close();
             }
-
-
             return whatIReturn;
         }
 

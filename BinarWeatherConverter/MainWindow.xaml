@@ -5,13 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BinarWeatherConverter" 
         xmlns:models="clr-namespace:BinarWeatherConverter.Models"
+        xmlns:data="clr-namespace:BinarWeatherConverter.ViewModels"
         mc:Ignorable="d"
         Title="Binar Weather Converter" 
         Height="450" Width="800" 
-        Background="SkyBlue">
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ListBox Name="ListBox">
-
-        </ListBox>
-    </StackPanel>
+        Background="SkyBlue" Topmost="True"
+        >
+    <Window.DataContext>
+        <data:MainViewModel/>
+    </Window.DataContext>
+        <ItemsControl Name="icMyWeatherTiles"
+                  ItemsSource="{Binding MyWeatherTiles}"
+                  Margin="5">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                        <StackPanel Margin="5">
+                            <StackPanel>
+                                <TextBlock Text="{Binding FirstDateDisplay}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding TimeStatusDisplay}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SecondDateDisplay}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding WindDisplay}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding TurbulenceDisplay}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SkyConditionDisplay}" />
+                                <TextBlock Text="{Binding VisibilityDisplay}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding IcingDisplay}" FontWeight="Bold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 </Window>

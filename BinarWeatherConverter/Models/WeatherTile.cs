@@ -8,10 +8,8 @@ namespace BinarWeatherConverter.Models
 {
     public class WeatherTile
     {
-        public int FirstTimeDisplay { get; set; }
-        public int SecondTimeDisplay { get; set; }
-        public int FirstDateDisplay { get; set; }
-        public int SecondDateDisplay { get; set; }
+        public string FirstDateTimeDisplay { get; set; }
+        public string SecondDateTimeDisplay { get; set; }
         public string TimeStatusDisplay { get; set; }
         public string WindDisplay { get; set; }
         public string VisibilityDisplay { get; set; }
@@ -24,11 +22,9 @@ namespace BinarWeatherConverter.Models
 
         public WeatherTile(string[] data)
         {
-            FirstTimeDisplay = DateTimeReader.GetTimeOne(data);
-            SecondTimeDisplay = DateTimeReader.GetTimeTwo(data);
-            FirstDateDisplay = DateTimeReader.GetDateOne(data);
-            SecondTimeDisplay = DateTimeReader.GetDateTwo(data);
             TimeStatusDisplay = TimeStatusReader.GetTimeStatus(data);
+            FirstDateTimeDisplay = DateTimeReader.GetFirstDateTime(data);
+            SecondDateTimeDisplay = DateTimeReader.GetSecondDateTime(data);
             WindDisplay = WindReader.GetWind(data);
             VisibilityDisplay = VisibilityReader.GetVisibility(data);
             SkyConditionDisplay = SkyConditionReader.GetSkyCondition(data);

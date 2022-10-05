@@ -22,13 +22,11 @@ namespace BinarWeatherConverter
     /// </summary>
     public partial class MainWindow : Window
     {
-        readonly MainViewModel view = new();
         public MainWindow()
         {
-            DataContext = view;
-            view.ReadFile();
             InitializeComponent();
-            ListBox.ItemsSource = view.MyWeatherTiles;
+            if (DataContext is MainViewModel view)
+                view.ReadFile();
         }
     }
 }

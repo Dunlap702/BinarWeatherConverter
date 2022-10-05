@@ -9,55 +9,31 @@ namespace BinarWeatherConverter.Models
 {
     internal class DateTimeReader
     {
-        internal static int GetTimeOne(string[] data)
+
+        internal static string GetFirstDateTime(string[] data)
         {
-            var result = "";
+            var result = "";            
             foreach (var item in data)
             {
-                if (item.Contains('/'))
-                    result = item[2].ToString() + item[3].ToString();
+                if (item.Contains('/') && item.Length == 9)
+                    result = item[0].ToString() + item[1].ToString() +
+                        item[2].ToString() + item[3].ToString();
             }
-            return (Convert.ToInt32(result)) - 7;
+            return result;
         }
 
-        internal static int GetTimeTwo(string[] data)
+        internal static string GetSecondDateTime(string[] data)
         {
             var result = "";
             foreach (var item in data)
             {
-                if (item.Contains('/'))
-                    result = item[7].ToString() + item[8].ToString();
+                if (item.Contains('/') && item.Length == 9)
+                    result = item[5].ToString() + item[6].ToString() +
+                        item[7].ToString() + item[8].ToString();
             }
-            // 7 hours is subtracted from the time because the current file
-            // displays time in Zulu time which is 7 hours ahead of PST.
-            return (Convert.ToInt32(result)) - 7;
+            return result;
         }
-
-        internal static int GetDateOne(string[] data)
-        {
-            var result = "";
-            int date = 0;
-            foreach (var item in data)
-            {
-                if (item.Contains('/') && !item.Contains("TN") &&
-                    !item.Contains("TX"))
-                    result = item[0].ToString() + item[1].ToString();
-            }
-            date = Convert.ToInt32(result);
-            return date;
-        }
-
-        internal static int GetDateTwo(string[] data)
-        {
-            var result = "";
-            foreach (var item in data)
-            {
-                if(item.Contains('/') && !item.Contains("TN") &&
-                    !item.Contains("TX"))
-                    result = item[5].ToString() + item[6].ToString();
-            }
-            return Convert.ToInt32(result);
-        }
+        
     }
 }
 
