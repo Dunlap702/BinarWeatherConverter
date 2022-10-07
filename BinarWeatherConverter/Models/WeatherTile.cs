@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BinarWeatherConverter.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,30 +9,20 @@ namespace BinarWeatherConverter.Models
 {
     public class WeatherTile
     {
-        public string FirstDateTimeDisplay { get; set; }
-        public string SecondDateTimeDisplay { get; set; }
-        public string TimeStatusDisplay { get; set; }
-        public string WindDisplay { get; set; }
-        public string VisibilityDisplay { get; set; }
-        public string SkyConditionDisplay { get; set; }
-        public string TurbulenceDisplay { get; set; }
-        public string IcingDisplay { get; set; }
-        public string MaxTempDisplay { get; set; }
-        public string MinTempDisplay { get; set; }
-
+        public TurbulenceViewModel TurbulenceVM { get; set; } = new();
+        public DateTimeViewModel DateTimeVM { get; set; } = new();
+        public StationStatusViewModel StationStatusVM { get; set; } = new();
+        public WindViewModel WindVM { get; set; } = new();
 
         public WeatherTile(string[] data)
         {
-            TimeStatusDisplay = TimeStatusReader.GetTimeStatus(data);
-            FirstDateTimeDisplay = DateTimeReader.GetFirstDateTime(data);
-            SecondDateTimeDisplay = DateTimeReader.GetSecondDateTime(data);
-            WindDisplay = WindReader.GetWind(data);
-            VisibilityDisplay = VisibilityReader.GetVisibility(data);
-            SkyConditionDisplay = SkyConditionReader.GetSkyCondition(data);
-            TurbulenceDisplay = TurbulenceReader.GetTurbulence(data);
-            IcingDisplay = IcingReader.GetIcing(data);
-            MaxTempDisplay = MaxTempReader.GetMaxTemp(data);
-            MinTempDisplay = MinTempReader.GetMinTemp(data);
+            TurbulenceVM.Evaluate(data);
+            DateTimeVM.Evaluate(data);
+            StationStatusVM.Evaluate(data);
+            WindVM.Evaluate(data);
+            // Evaluate Visibility
+            // Evaluate Icing
+            // Evaluate Temperature (seperate min/max?)
         }
     }
 }
