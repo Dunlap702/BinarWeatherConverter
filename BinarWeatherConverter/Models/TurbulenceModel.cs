@@ -13,7 +13,7 @@ namespace BinarWeatherConverter.Models
         {
             //Pro-Tip:  !string.IsNullOrEmpty() instead of != null
             //          Also, verify the length of the string, just in case
-            if (item != null)
+            if (!string.IsNullOrEmpty(item))
             {
                 Severity = Convert.ToInt32(item[1]);
                 Altitude = Convert.ToInt32(item.Substring(2,3));

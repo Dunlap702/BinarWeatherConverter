@@ -17,25 +17,33 @@ namespace BinarWeatherConverter.Models
 
         public WindModel(string item)
         {
-            if (item.Contains('G'))
+            if (!string.IsNullOrEmpty(item))
             {
-                DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
-                WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
-                WindSpeedTwo = Convert.ToInt32(item.Substring(6, 2));
+                if (item.Contains('G') && item.Contains("KT"))
+                {
+                    DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
+                    WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
+                    WindSpeedTwo = Convert.ToInt32(item.Substring(6, 2));
+                }
+                else if (item.StartsWith("VRB"))
+                {
+                    Status = item.Substring(0, 3);
+                    WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
+                }
+                else if (item[3] == 'V')
+                {
+                    DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
+                    Status = "Varying";
+                    DirectionTwo = GetDirection(Convert.ToInt32(item.Substring(4, 3)));
+                }
+                else if (item.Contains("KT") && !item.StartsWith("00000"))
+                {
+                    DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
+                    WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
+                }
+                else
+                    Status = "Calm";
             }
-            else if (item.StartsWith("VRB"))
-            {
-                Status = item.Substring(0, 3);
-                WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
-            }
-            else if (item[3] == 'V')
-            {
-                DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
-                Status = "Varying";
-                DirectionTwo = GetDirection(Convert.ToInt32(item.Substring(4, 3)));
-            }
-            else
-                Status = "Calm";
         }
 
         public string GetDirection(int value)

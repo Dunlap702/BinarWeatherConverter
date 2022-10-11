@@ -14,8 +14,7 @@ namespace BinarWeatherConverter.Models
 
         public IcingModel(string item)
         {
-            // !string.IsNullOrEmpty(item), also verify length
-            if (item != null)
+            if (!string.IsNullOrEmpty(item) && item.Length == 6)
             {
                 Severity = Convert.ToInt32(item[1]);
                 HeightOfIcing = Convert.ToInt32(item.Substring(2, 3));

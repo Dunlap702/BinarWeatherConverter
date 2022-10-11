@@ -12,7 +12,7 @@ namespace BinarWeatherConverter.Models
 
         public StationStatusModel(string item)
         {
-            if (item != null)
+            if (!string.IsNullOrEmpty(item))
                 StationStatus = item;
         }
     }

@@ -22,15 +22,16 @@ namespace BinarWeatherConverter.ViewModels
         public void ReadFile()
         {
             var fileData = FileReader.ReadFile(path);
-            //Pro-Tip:  verify you have data here before using it
-            StationData = fileData[1];
 
-            for (int i = 1; i < fileData.Count; i++)
+            if (fileData != null && fileData.Count > 0)
             {
-                string[]? lineOfSplitData = fileData[i];
-                //analyze each and make a tile
-                WeatherTile tile = new(lineOfSplitData);
-                MyWeatherTiles.Add(tile);
+                for (int i = 0; i < fileData.Count; i++)
+                {
+                    string[]? lineOfSplitData = fileData[i];
+
+                    WeatherTile tile = new(lineOfSplitData);
+                    MyWeatherTiles.Add(tile);
+                } 
             }
         }
     }

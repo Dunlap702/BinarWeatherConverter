@@ -13,7 +13,7 @@ namespace BinarWeatherConverter.Models
 
         public SkyConditionModel(string item)
         {
-            if (item != null)
+            if (!string.IsNullOrEmpty(item))
             {
                 Conditon = item.Substring(0, 3);
                 if (Conditon != "SKC")
