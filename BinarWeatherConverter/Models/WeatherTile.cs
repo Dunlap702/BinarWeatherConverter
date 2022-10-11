@@ -15,6 +15,7 @@ namespace BinarWeatherConverter.Models
         public WindViewModel WindVM { get; set; } = new();
         public SkyConditionViewModel SkyConditionVM { get; set; } = new();
         public IcingViewModel IcingVM { get; set; } = new();
+        public TemperatureViewModel TemperatureVM { get; set; } = new();
 
 
         public WeatherTile(string[] data)
@@ -24,7 +25,7 @@ namespace BinarWeatherConverter.Models
             StationStatusVM.Evaluate(data);
             WindVM.Evaluate(data);
             IcingVM.Evaluate(data);
-            // Evaluate Temperature (seperate min/max?)
+            TemperatureVM.Evaluate(data);
         }
     }
 }
