@@ -17,8 +17,11 @@ namespace BinarWeatherConverter.Models
         {
             if (item != null)
             {
-                StartTime = DateTime.ParseExact(item.Substring(0, 4), "ddHH", null);
-                EndTime = DateTime.ParseExact(item.Substring(5, 4), "ddHH", null);
+                // the string data is somehow being listed as int?
+                timeOne = item.Substring(0, 2);
+                timeTwo = item.Substring(7, 2);
+                StartTime = new(Convert.ToInt32(timeOne), 00);
+                EndTime = new(Convert.ToInt32(timeTwo), 00);
                 StartTime.AddHours(-7);
                 EndTime.AddHours(-7);
             }

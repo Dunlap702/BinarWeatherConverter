@@ -14,7 +14,7 @@ namespace BinarWeatherConverter.Models
         public StationStatusViewModel StationStatusVM { get; set; } = new();
         public WindViewModel WindVM { get; set; } = new();
         public SkyConditionViewModel SkyConditionVM { get; set; } = new();
-        public IcingVideModel IcingVM { get; set; } = new();
+        public IcingViewModel IcingVM { get; set; } = new();
 
 
         public WeatherTile(string[] data)
