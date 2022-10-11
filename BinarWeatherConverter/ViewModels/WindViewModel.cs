@@ -17,7 +17,9 @@ namespace BinarWeatherConverter.ViewModels
         {
             foreach (string item in data)
             {
-                if (item.Contains("KT") || (item[3] == 'V'))
+                if (item.Length < 4)
+                    break;
+                else if (item.Contains("KT") || (item[3] == 'V'))
                 {
                     WindModel newWind = new(item);
                     Wind.Add(newWind);
