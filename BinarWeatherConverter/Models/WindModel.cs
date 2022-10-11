@@ -19,7 +19,7 @@ namespace BinarWeatherConverter.Models
         {
             if (item.Contains('G'))
             {
-                DirectionOne = GetDirection(item.Substring(0, 3));
+                DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
                 WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
                 WindSpeedTwo = Convert.ToInt32(item.Substring(6, 2));
             }
@@ -30,45 +30,50 @@ namespace BinarWeatherConverter.Models
             }
             else if (item[3] == 'V')
             {
-                DirectionOne = GetDirection(item.Substring(0, 3));
+                DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
                 Status = "Varying";
-                DirectionTwo = GetDirection(item.Substring(4, 3));
+                DirectionTwo = GetDirection(Convert.ToInt32(item.Substring(4, 3)));
             }
             else
                 Status = "Calm";
         }
 
-        public string GetDirection(string degrees)
+        public string GetDirection(int value)
         {
-            var result = "";
-            switch (degrees)
-            {
-                case "0":
-                    result = "N";
-                    break;
-                case "45":
-                    result = "NE";
-                    break;
-                case "90":
-                    result = "E";
-                    break;
-                case "135":
-                    result = "SE";
-                    break;
-                case "180":
-                    result = "S";
-                    break;
-                case "225":
-                    result = "SW";
-                    break;
-                case "270":
-                    result = "E";
-                    break;
-                case "315":
-                    result = "NE";
-                    break;
-            }
-            return result;
+            string sReturn = "N";
+            if (value > 348 || value < 11.25)
+                sReturn = "N";
+            else if (value < 33.75)
+                sReturn = "NNE";
+            else if (value < 56.25)
+                sReturn = "NE";
+            else if (value < 78.75)
+                sReturn = "ENE";
+            else if (value < 101.25)
+                sReturn = "E";
+            else if (value < 123.75)
+                sReturn = "ESE";
+            else if (value < 146.25)
+                sReturn = "SE";
+            else if (value < 168.75)
+                sReturn = "SSE";
+            else if (value < 191.25)
+                sReturn = "S";
+            else if (value < 213.75)
+                sReturn = "SSW";
+            else if (value < 236.25)
+                sReturn = "SW";
+            else if (value < 258.75)
+                sReturn = "WSW";
+            else if (value < 281.25)
+                sReturn = "W";
+            else if (value < 303.75)
+                sReturn = "WNW";
+            else if (value < 326.25)
+                sReturn = "NW";
+            else if (value < 348.75)
+                sReturn = "NNW";
+            return sReturn;
         }
     }
 
