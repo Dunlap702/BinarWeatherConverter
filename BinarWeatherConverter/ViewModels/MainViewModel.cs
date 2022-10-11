@@ -22,7 +22,7 @@ namespace BinarWeatherConverter.ViewModels
         public void ReadFile()
         {
             var fileData = FileReader.ReadFile(path);
-
+            //Pro-Tip:  verify you have data here before using it
             StationData = fileData[1];
 
             for (int i = 1; i < fileData.Count; i++)

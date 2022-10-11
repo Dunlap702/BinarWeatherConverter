@@ -11,6 +11,8 @@ namespace BinarWeatherConverter.Models
 
         public TurbulenceModel(string item)
         {
+            //Pro-Tip:  !string.IsNullOrEmpty() instead of != null
+            //          Also, verify the length of the string, just in case
             if (item != null)
             {
                 Severity = Convert.ToInt32(item[1]);
