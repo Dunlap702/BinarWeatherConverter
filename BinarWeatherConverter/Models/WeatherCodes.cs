@@ -9,42 +9,59 @@ namespace BinarWeatherConverter.Models
     public static class WeatherCodes
     {
         public static string GetDescription(string code) => Codes.FirstOrDefault(x => x.Key == code).Value;
-        
+
+        public static int GetSeverity(string code)
+        {
+            if (Codes.ContainsKey(code))
+            {
+                var obj = Codes.FirstOrDefault(x => x.Key == code);
+                return Codes.ToList().IndexOf(obj);
+            }
+            return 0;
+        }
+
         public static readonly Dictionary<string, string> Codes = new()
         {
+            //Intensity/Proximity
             { "VC", "Vicinity" },
-            { "BC", "Patches" },
-            { "BL", "Blowing" },
-            { "DR", "Low Drifting" },
-            { "FZ", "Freezing" },
+
+            //Descriptors
             { "MI", "Shallow" },
             { "PR", "Partial" },
+            { "BC", "Patches" },
+            { "DR", "Drifting" },
+            { "BL", "Blowing" },
             { "SH", "Showers" },
             { "TS", "Thunderstorm" },
+            { "FZ", "Freezing" },
 
+            //Precipitation
             { "DZ", "Drizzle" },
-            { "GR", "Hail" },
-            { "GS", "Small Hail" },
+            { "RA", "Rain" },
+            { "SN", "Snow" },
+            { "SG", "Snow Grains" },
             { "IC", "Ice Crystals" },
             { "PL", "Ice Pellets" },
-            { "RA", "Rain" },
-            { "SG", "Snow Grains" },
-            { "SN", "Snow" },
+            { "GR", "Hail" },
+            { "GS", "Snow pellets" },
             { "UP", "Unknown" },
 
+            //Obsecurity
             { "BR", "Mist" },
-            { "DU", "Dust" },
             { "FG", "Fog" },
             { "FU", "Smoke" },
+            { "VA", "Volcanic Ash" },
+            { "DU", "Dust" },
+            { "SA", "Sand" },
             { "HZ", "Haze" },
             { "PY", "Spray" },
-            { "SA", "Sand" },
-            { "VA", "Volcanic Ash" },
-            { "DS", "Dust Storm" },
+
+            //Other
+            { "PO", "Dust Devil" },
+            { "SQ", "Squall" },
             { "FC", "Funnel Cloud" },
-            { "PO", "Sand Whirls" },
-            { "SQ", "Squalls" },
-            { "SS", "Sandstorm" }
+            { "SS", "Sandstorm" },
+            { "DS", "Dust Storm" }
         };
     }
 }

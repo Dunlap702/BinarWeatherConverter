@@ -5,40 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BinarWeatherConverter" 
         xmlns:models="clr-namespace:BinarWeatherConverter.Models"
+        xmlns:converters="clr-namespace:BinarWeatherConverter.Converters"
         xmlns:data="clr-namespace:BinarWeatherConverter.ViewModels"
         mc:Ignorable="d"
         Title="Binar Weather Converter" 
-        Height="450" Width="800" 
-        Background="SkyBlue" Topmost="True"
+        SizeToContent="WidthAndHeight" 
+        Background="SlateGray" Topmost="True" d:DesignHeight="225.031" d:DesignWidth="568.058"
         >
     <Window.DataContext>
         <data:MainViewModel/>
     </Window.DataContext>
-        <ItemsControl Name="icMyWeatherTiles"
+    <Window.Resources>
+        <converters:SkyConditionVisibilityConverter x:Key="SkyConditionConverter"/>
+    </Window.Resources>
+
+    <!-- Aviation Weather Tiles -->
+    <ItemsControl Name="icMyWeatherTiles"
                   ItemsSource="{Binding MyWeatherTiles}"
                   Margin="5">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" BorderThickness="2" BorderBrush="Black">
-                        <StackPanel Margin="5">
-                            <StackPanel>
-                                <TextBlock Text="{Binding FirstDateDisplay}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding TimeStatusDisplay}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding SecondDateDisplay}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding WindDisplay}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding TurbulenceDisplay}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding SkyConditionDisplay}" />
-                                <TextBlock Text="{Binding VisibilityDisplay}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding IcingDisplay}" FontWeight="Bold"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <UniformGrid Rows="1"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Background color for each tile-->
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="4"
+                                   Background="LightSteelBlue"/>
+
+                        <!--Sky Conditon Backgrounds-->
+                        <Image Grid.Row="2" Grid.Column="0" 
+                               Grid.RowSpan="2"
+                               Grid.ColumnSpan="3"
+                               Height="400"
+                               Width="225"
+                               Source="{Binding SkyConditionVM.Condition.Image}" Stretch="UniformToFill"/>
+
+                        <!--Station/Status-->
+                        <TextBlock Grid.Row="0" Grid.Column="1" 
+                                   Text="{Binding StationStatusVM.StationStatus.StationStatus}" 
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding VisibilityVM.Visbility.Visibility}" FontWeight="Bold" />
+
+                        <!--Icing-->
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding IcingVM.WorstCase.GetIntensity}" 
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateTimeVM.DateTime.Display}" FontWeight="Bold"/>
+
+                        <!--Turbulence-->
+                        <TextBlock Grid.Row="1" Grid.Column="2" Margin="5" Text="{Binding TurbulenceVM.WorstCase.GetIntensity}" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+                        <!--Sky Conditions-->
+                        <ItemsControl Grid.Row="3" Grid.Column="0" ItemsSource="{Binding SkyConditionVM.SkyConditions}" 
+                                      FontWeight="Bold"
+                                      VerticalAlignment="Bottom"
+                                      Background="#7F000000"
+                                      Foreground="#FFDEE1F1"
+                                      Visibility="{Binding SkyConditionVM.SkyConditions, Converter={StaticResource SkyConditionConverter}}" 
+                                      FontFamily="Cascadia Mono Light">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Display}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!--Wind--> <!--ADD CONVERTER FOR VISIBILITY-->
+                        <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding WindVM.Wind.Display}" 
+                                   FontWeight="Bold" FontFamily="Cascadia Mono Light"
+                                   VerticalAlignment="Bottom"
+                                   HorizontalAlignment="Right"
+                                   Background="#7F000000"
+                                   Foreground="#FFDEE1F1"/>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+    
 </Window>

@@ -8,7 +8,75 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Backgrounds\BKN.png" />
+    <None Remove="Images\Backgrounds\FEW.png" />
+    <None Remove="Images\Backgrounds\OVC.png" />
+    <None Remove="Images\Backgrounds\SCT.png" />
+    <None Remove="Images\Backgrounds\SKC.png" />
+    <None Remove="Images\Icing\0.png" />
+    <None Remove="Images\Turbulence\turbulence.png" />
+    <None Remove="Images\WeatherIcons\bkn.png" />
+    <None Remove="Images\WeatherIcons\chanceflurries.png" />
+    <None Remove="Images\WeatherIcons\chancerain.png" />
+    <None Remove="Images\WeatherIcons\chancesleat.png" />
+    <None Remove="Images\WeatherIcons\chancesnow.png" />
+    <None Remove="Images\WeatherIcons\chancetstorms.png" />
+    <None Remove="Images\WeatherIcons\clear.png" />
+    <None Remove="Images\WeatherIcons\cloudy.png" />
+    <None Remove="Images\WeatherIcons\few.png" />
+    <None Remove="Images\WeatherIcons\flurries.png" />
+    <None Remove="Images\WeatherIcons\HZ.png" />
+    <None Remove="Images\WeatherIcons\mostlycloudy.png" />
+    <None Remove="Images\WeatherIcons\mostlysunny.png" />
+    <None Remove="Images\WeatherIcons\ovc.png" />
+    <None Remove="Images\WeatherIcons\partlycloudy.png" />
+    <None Remove="Images\WeatherIcons\partlysunny.png" />
+    <None Remove="Images\WeatherIcons\rain.png" />
+    <None Remove="Images\WeatherIcons\sct.png" />
+    <None Remove="Images\WeatherIcons\skc.png" />
+    <None Remove="Images\WeatherIcons\sleet.png" />
+    <None Remove="Images\WeatherIcons\snow.png" />
+    <None Remove="Images\WeatherIcons\sunny.png" />
+    <None Remove="Images\WeatherIcons\tstorms.png" />
+    <None Remove="Images\WeatherIcons\unknown.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="VIews\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Backgrounds\BKN.png" />
+    <Resource Include="Images\Backgrounds\FEW.png" />
+    <Resource Include="Images\Backgrounds\OVC.png" />
+    <Resource Include="Images\Backgrounds\SCT.png" />
+    <Resource Include="Images\Backgrounds\SKC.png" />
+    <Resource Include="Images\Icing\0.png" />
+    <Resource Include="Images\Turbulence\turbulence.png" />
+    <Resource Include="Images\WeatherIcons\bkn.png" />
+    <Resource Include="Images\WeatherIcons\chanceflurries.png" />
+    <Resource Include="Images\WeatherIcons\chancerain.png" />
+    <Resource Include="Images\WeatherIcons\chancesleat.png" />
+    <Resource Include="Images\WeatherIcons\chancesnow.png" />
+    <Resource Include="Images\WeatherIcons\chancetstorms.png" />
+    <Resource Include="Images\WeatherIcons\clear.png" />
+    <Resource Include="Images\WeatherIcons\cloudy.png" />
+    <Resource Include="Images\WeatherIcons\few.png" />
+    <Resource Include="Images\WeatherIcons\flurries.png" />
+    <Resource Include="Images\WeatherIcons\HZ.png" />
+    <Resource Include="Images\WeatherIcons\mostlycloudy.png" />
+    <Resource Include="Images\WeatherIcons\mostlysunny.png" />
+    <Resource Include="Images\WeatherIcons\ovc.png" />
+    <Resource Include="Images\WeatherIcons\partlycloudy.png" />
+    <Resource Include="Images\WeatherIcons\partlysunny.png" />
+    <Resource Include="Images\WeatherIcons\rain.png" />
+    <Resource Include="Images\WeatherIcons\sct.png" />
+    <Resource Include="Images\WeatherIcons\skc.png" />
+    <Resource Include="Images\WeatherIcons\sleet.png" />
+    <Resource Include="Images\WeatherIcons\snow.png" />
+    <Resource Include="Images\WeatherIcons\sunny.png" />
+    <Resource Include="Images\WeatherIcons\tstorms.png" />
+    <Resource Include="Images\WeatherIcons\unknown.png" />
   </ItemGroup>
 
 </Project>

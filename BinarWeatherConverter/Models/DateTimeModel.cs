@@ -13,6 +13,11 @@ namespace BinarWeatherConverter.Models
 
         public DateTime EndTime { get; set; }
 
+        public string Display
+        {
+            get => $"{StartTime:HH:mm} to {EndTime:HH:mm}";
+        }
+
         public DateTimeModel(string item)
         {
 

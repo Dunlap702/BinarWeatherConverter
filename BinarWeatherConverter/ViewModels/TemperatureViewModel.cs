@@ -10,13 +10,14 @@ namespace BinarWeatherConverter.ViewModels
 {
     public class TemperatureViewModel
     {
+        public TemperatureModel Temperature { get; set; }
         internal void Evaluate(string[] data)
         {
             foreach (string item in data)
             {
                 if(item.Contains("TX") || item.Contains("TN"))
                 {
-                    TemperatureModel newTemperature = new(item);
+                    Temperature = new(item);
                 }
             }
         }

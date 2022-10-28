@@ -5,12 +5,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BinarWeatherConverter.ViewModels
 {
     public class SkyConditionViewModel
     {
         public ObservableCollection<SkyConditionModel> SkyConditions { get; set; } = new();
+        public SkyConditionModel? Condition { get; set; } 
+        
         internal void Evaluate(string[] data)
         {
             foreach (string item in data)
@@ -18,8 +21,8 @@ namespace BinarWeatherConverter.ViewModels
                 if (item.Contains("SKC") || item.Contains("FEW") || item.Contains("SCT")
                     || item.Contains("BKN") || item.Contains("OVC"))
                 {
-                    SkyConditionModel newSkyCondition = new(item);
-                    SkyConditions.Add(newSkyCondition);
+                    Condition = new(item);
+                    SkyConditions.Add(Condition);
                 }
             }
         }

@@ -33,7 +33,6 @@ namespace BinarWeatherConverter.ViewModels
         {
             foreach (string item in data)
             {
-                //Pro-Tip:  I think Turbulence and Icing are always the same length, good to verify that here
                 if (item.StartsWith('6') && !item.Contains('+') && item.Length == 6)
                 {
                     IcingModel newIcing = new(item);

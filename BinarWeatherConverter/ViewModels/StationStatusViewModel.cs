@@ -10,6 +10,7 @@ namespace BinarWeatherConverter.ViewModels
 {
     public class StationStatusViewModel
     {
+        public StationStatusModel? StationStatus { get; set; }
         internal void Evaluate(string[] data)
         {
             foreach (string item in data)
@@ -17,7 +18,8 @@ namespace BinarWeatherConverter.ViewModels
                 if (item.Contains("BEC") || item.Contains("TEMP") ||
                         item.Contains("STA"))
                 {
-                    StationStatusModel newStatus = new(item);
+                    StationStatus = new(item);
+                    break;
                 }
             }
         }

@@ -19,13 +19,15 @@ namespace BinarWeatherConverter.Models
             {
                 if (item.StartsWith("TX"))
                 {
-                    MaxTemp = Convert.ToInt32(item.Substring(2,2));
+                    MaxTemp = Convert.ToInt32(item.Substring(2, 2));
                     MaxTempDateTime = DateTime.ParseExact(item.Substring(5, 4), "ddHH", null);
-                } else if (item.StartsWith("TN"))
+                }
+                else if (item.StartsWith("TN"))
                 {
-                    MinTemp = Convert.ToInt32(item.Substring(2,2));
+                    MinTemp = Convert.ToInt32(item.Substring(2, 2));
                     MinTempDateTime = DateTime.ParseExact(item.Substring(5, 4), "ddHH", null);
                 }
             }
         }
     }
+}

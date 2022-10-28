@@ -14,35 +14,58 @@ namespace BinarWeatherConverter.Models
         public string? Status { get; set; }
         public int WindSpeedOne { get; set; }
         public int WindSpeedTwo { get; set; }
-
+        public string? Display { get; set; }
+ 
         public WindModel(string item)
         {
+            string input1 = "SN";
+            string input2 = "+SN";
+            string input3 = "BLSN";
+            string input4 = "+BLSN";
+
+            if (input1.Length > 1)
+            {
+                //Pull out the last 2 characters
+                var last2 = input1.Substring(input1.Length-2, 2);
+                
+                if (WeatherCodes.Codes.ContainsKey("last2"))
+                {
+                    //We know this is a valid case
+                    //Determine if we're heavy (+) or light (-)
+                    //Determine if there's more than 1 code in there
+                }
+            }
+
             if (!string.IsNullOrEmpty(item))
             {
                 if (item.Contains('G') && item.Contains("KT"))
                 {
-                    DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
+                    DirectionOne = GetDirection(Convert.ToInt32(item[..3]));
                     WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
                     WindSpeedTwo = Convert.ToInt32(item.Substring(6, 2));
+                    Display = $"{DirectionOne} {WindSpeedOne}KT\nG {WindSpeedTwo}KT";
                 }
                 else if (item.StartsWith("VRB"))
                 {
                     Status = item.Substring(0, 3);
                     WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
+                    Display = $"{Status} {WindSpeedOne}KT";
                 }
                 else if (item[3] == 'V')
                 {
-                    DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
+                    DirectionOne = GetDirection(Convert.ToInt32(item[..3]));
                     Status = "Varying";
                     DirectionTwo = GetDirection(Convert.ToInt32(item.Substring(4, 3)));
+                    Display = $"{DirectionOne} V {DirectionTwo}";
                 }
                 else if (item.Contains("KT") && !item.StartsWith("00000"))
                 {
-                    DirectionOne = GetDirection(Convert.ToInt32(item.Substring(0, 3)));
+                    DirectionOne = GetDirection(Convert.ToInt32(item[..3]));
                     WindSpeedOne = Convert.ToInt32(item.Substring(3, 2));
+                    Display = $"{DirectionOne} {WindSpeedOne}KT";
                 }
                 else
-                    Status = "Calm";
+                    Display = "Calm";
             }
         }
 

@@ -12,6 +12,27 @@ namespace BinarWeatherConverter.Models
         public int HeightOfIcing { get; set; }
         public int Thickness { get; set; }
 
+        public string GetIntensity
+        {
+            get
+            {
+                return Severity switch
+                {
+                    0 => "None",
+                    1 => "Light",
+                    2 => "Moderate",
+                    3 => "Moderate+",
+                    4 => "Mod/Severe",
+                    5 => "Mod/Severe+",
+                    6 => "Severe",
+                    7 => "Severe+",
+                    8 => "Extreme",
+                    9 => "Deadly",
+                    _ => "None",
+                };
+            }
+        }
+
         public IcingModel(string item)
         {
             if (!string.IsNullOrEmpty(item) && item.Length == 6)

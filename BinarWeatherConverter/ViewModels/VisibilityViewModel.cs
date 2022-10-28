@@ -1,23 +1,22 @@
 ﻿using BinarWeatherConverter.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class WindViewModel
+    public class VisibilityViewModel
     {
-        public WindModel? Wind { get; set; }
+        public VisibilityModel? Visbility { get; set; }
+
         internal void Evaluate(string[] data)
         {
             foreach (string item in data)
             {
-                if (item.Contains("KT"))
-                    Wind = new(item);
+                if (item.Contains('+') && item.Length < 3)
+                    Visbility = new(item);
             }
         }
     }
