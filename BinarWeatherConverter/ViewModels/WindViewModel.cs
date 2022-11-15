@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class WindViewModel
+    public class WindViewModel : BaseViewModel
     {
         public WindModel? Wind { get; set; }
-        internal void Evaluate(string[] data)
+
+        public override void Evaluate(string[] data)
         {
             foreach (string item in data)
             {

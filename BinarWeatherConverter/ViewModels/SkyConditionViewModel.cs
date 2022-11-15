@@ -9,12 +9,12 @@ using System.Windows;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class SkyConditionViewModel
+    public class SkyConditionViewModel : BaseViewModel
     {
         public ObservableCollection<SkyConditionModel> SkyConditions { get; set; } = new();
         public SkyConditionModel? Condition { get; set; } 
         
-        internal void Evaluate(string[] data)
+        public override void Evaluate(string[] data)
         {
             foreach (string item in data)
             {

@@ -18,17 +18,17 @@ namespace BinarWeatherConverter.Models
             {
                 return Severity switch
                 {
-                    0 => "None",
-                    1 => "Light",
-                    2 => "Moderate",
-                    3 => "Moderate+",
-                    4 => "Mod/Severe",
-                    5 => "Mod/Severe+",
-                    6 => "Severe",
-                    7 => "Severe+",
-                    8 => "Extreme",
-                    9 => "Deadly",
-                    _ => "None",
+                    0 => "No \nIcing",
+                    1 => "Light \nIcing",
+                    2 => "Moderate \nIcing",
+                    3 => "Moderate+ \nIcing",
+                    4 => "Mod/Severe \nIcing",
+                    5 => "Mod/Severe+ \nIcing",
+                    6 => "Severe \nIcing",
+                    7 => "Severe+ \nIcing",
+                    8 => "Extreme \nIcing",
+                    9 => "Deadly \nIcing",
+                    _ => "No Icing",
                 };
             }
         }
@@ -37,9 +37,9 @@ namespace BinarWeatherConverter.Models
         {
             if (!string.IsNullOrEmpty(item) && item.Length == 6)
             {
-                Severity = Convert.ToInt32(item[1]);
-                HeightOfIcing = Convert.ToInt32(item.Substring(2, 3));
-                Thickness = Convert.ToInt32(item[5]);
+                Severity = int.Parse(item[1..2]);
+                HeightOfIcing = int.Parse(item[2..5]);
+                Thickness = int.Parse(item[5..]);
             }
         }
     }

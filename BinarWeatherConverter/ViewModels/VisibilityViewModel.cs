@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class VisibilityViewModel
+    public class VisibilityViewModel : BaseViewModel
     {
         public VisibilityModel? Visbility { get; set; }
 
-        internal void Evaluate(string[] data)
+        public override void Evaluate(string[] data)
         {
             foreach (string item in data)
             {
-                if (item.Contains('+') && item.Length < 3)
+                if (item.Length >= 1 && item.Length <= 2)
                     Visbility = new(item);
             }
         }

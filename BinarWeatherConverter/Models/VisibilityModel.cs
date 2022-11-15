@@ -12,7 +12,7 @@ namespace BinarWeatherConverter.Models
 
         public VisibilityModel(string item)
         {
-            if (string.IsNullOrEmpty(item))
+            if (!string.IsNullOrEmpty(item))
                 Visibility = item;
         }
     }

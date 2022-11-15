@@ -17,6 +17,7 @@ namespace BinarWeatherConverter.Models
         public IcingViewModel IcingVM { get; set; } = new();
         public TemperatureViewModel TemperatureVM { get; set; } = new();
         public VisibilityViewModel VisibilityVM { get; set; } = new();
+        public WeatherConditionsViewModel WeatherConditionsVM { get; set; } = new();
 
 
         public WeatherTile(string[] data)
@@ -28,6 +29,7 @@ namespace BinarWeatherConverter.Models
             WindVM.Evaluate(data);
             TurbulenceVM.Evaluate(data);
             IcingVM.Evaluate(data);
+            WeatherConditionsVM.Evaluate(data);
 
             //Used to set a background image for codes without a sky condition (Station Status = Temp)
             if (SkyConditionVM.Condition == null)

@@ -8,6 +8,7 @@ namespace BinarWeatherConverter.Models
         public int Severity { get; set; }
         public int Altitude { get; set; }
         public int Thickness { get; set; }
+        public string? Display { get; set; }
 
         public string GetIntensity
         {
@@ -15,26 +16,18 @@ namespace BinarWeatherConverter.Models
             {
                 return Severity switch
                 {
-                    0 => "None",
-                    1 => "Light",
-                    2 => "Moderate",
-                    3 => "Moderate+",
-                    4 => "Mod/Severe",
-                    5 => "Mod/Severe+",
-                    6 => "Severe",
-                    7 => "Severe+",
-                    8 => "Extreme",
-                    9 => "Deadly",
-                    _ => "None",
+                    0 => "No Turbulence",
+                    1 => "Light \nTurbulence",
+                    2 => "Moderate \nTurbulence",
+                    3 => "Moderate+ \nTurbulence",
+                    4 => "Mod/Severe \nTurbulence",
+                    5 => "Mod/Severe+ \nTurbulence",
+                    6 => "Severe \nTurbulence",
+                    7 => "Severe+ \nTurbulence",
+                    8 => "Extreme \nTurbulence",
+                    9 => "Deadly \nTurbulence",
+                    _ => "No Turbulence",
                 };
-            }
-        }
-
-        public string Display
-        {
-            get
-            {
-                return $"Turb: {Severity}";
             }
         }
 
@@ -45,6 +38,7 @@ namespace BinarWeatherConverter.Models
                 Severity = int.Parse(item[1..2]);
                 Altitude = int.Parse(item[2..5]);
                 Thickness = int.Parse(item[5..]);
+                Display = $"{GetIntensity}";
             }
         }
     }

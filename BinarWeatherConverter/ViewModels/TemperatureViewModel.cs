@@ -8,10 +8,11 @@ using System.Windows.Automation.Peers;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class TemperatureViewModel
+    public class TemperatureViewModel : BaseViewModel
     {
-        public TemperatureModel Temperature { get; set; }
-        internal void Evaluate(string[] data)
+        public TemperatureModel? Temperature { get; set; }
+
+        public override void Evaluate(string[] data)
         {
             foreach (string item in data)
             {

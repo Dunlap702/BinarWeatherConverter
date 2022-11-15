@@ -11,8 +11,6 @@ namespace BinarWeatherConverter.Models
         public string? Conditon { get; set; } = "SKC";
         public int BaseHeight { get; set; } = 0;
         public string? Display { get; set; }
-        //pack://application:,,,/BinarWeatherConverter;component/Images/image_to_use.png
-        //Set the background of the tile
         public string? Image => $@"pack://application:,,,/Images/Backgrounds/{Conditon}.png";
 
         public SkyConditionModel(string item)

@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class StationStatusViewModel
+    public class StationStatusViewModel : BaseViewModel
     {
         public StationStatusModel? StationStatus { get; set; }
-        internal void Evaluate(string[] data)
+
+        public override void Evaluate(string[] data)
         {
             foreach (string item in data)
             {

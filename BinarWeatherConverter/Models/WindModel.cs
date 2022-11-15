@@ -18,24 +18,6 @@ namespace BinarWeatherConverter.Models
  
         public WindModel(string item)
         {
-            string input1 = "SN";
-            string input2 = "+SN";
-            string input3 = "BLSN";
-            string input4 = "+BLSN";
-
-            if (input1.Length > 1)
-            {
-                //Pull out the last 2 characters
-                var last2 = input1.Substring(input1.Length-2, 2);
-                
-                if (WeatherCodes.Codes.ContainsKey("last2"))
-                {
-                    //We know this is a valid case
-                    //Determine if we're heavy (+) or light (-)
-                    //Determine if there's more than 1 code in there
-                }
-            }
-
             if (!string.IsNullOrEmpty(item))
             {
                 if (item.Contains('G') && item.Contains("KT"))

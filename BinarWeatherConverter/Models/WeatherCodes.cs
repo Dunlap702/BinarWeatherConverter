@@ -22,21 +22,26 @@ namespace BinarWeatherConverter.Models
 
         public static readonly Dictionary<string, string> Codes = new()
         {
-            //Intensity/Proximity
+            { "UP", "Unknown" },
             { "VC", "Vicinity" },
-
-            //Descriptors
             { "MI", "Shallow" },
-            { "PR", "Partial" },
-            { "BC", "Patches" },
             { "DR", "Drifting" },
             { "BL", "Blowing" },
-            { "SH", "Showers" },
-            { "TS", "Thunderstorm" },
-            { "FZ", "Freezing" },
+            { "PR", "Partial" },
 
-            //Precipitation
+            { "PO", "Dust Devil" },
+            { "SQ", "Squall" },
+            { "BC", "Patches" },
             { "DZ", "Drizzle" },
+            { "HZ", "Haze" },
+            { "FU", "Smoke" },
+            { "BR", "Mist" },
+            { "FG", "Fog" },
+            { "DU", "Dust" },
+            { "SA", "Sand" },
+            { "PY", "Spray" },
+
+            { "SH", "Showers" },
             { "RA", "Rain" },
             { "SN", "Snow" },
             { "SG", "Snow Grains" },
@@ -44,24 +49,12 @@ namespace BinarWeatherConverter.Models
             { "PL", "Ice Pellets" },
             { "GR", "Hail" },
             { "GS", "Snow pellets" },
-            { "UP", "Unknown" },
-
-            //Obsecurity
-            { "BR", "Mist" },
-            { "FG", "Fog" },
-            { "FU", "Smoke" },
-            { "VA", "Volcanic Ash" },
-            { "DU", "Dust" },
-            { "SA", "Sand" },
-            { "HZ", "Haze" },
-            { "PY", "Spray" },
-
-            //Other
-            { "PO", "Dust Devil" },
-            { "SQ", "Squall" },
-            { "FC", "Funnel Cloud" },
             { "SS", "Sandstorm" },
-            { "DS", "Dust Storm" }
+            { "TS", "Thunderstorm" },
+            { "FZ", "Freezing" },
+            { "FC", "Funnel Cloud" },
+            { "DS", "Dust Storm" },
+            { "VA", "Volcanic Ash" }
         };
     }
 }
