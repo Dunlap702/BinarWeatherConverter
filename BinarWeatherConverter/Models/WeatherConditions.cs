@@ -12,18 +12,17 @@ namespace BinarWeatherConverter.Models
         public string? Intensity { get; set; }
         public string Description { get; set; }
         public int Severity { get; set; }
+        public string? Image => $@"pack://application:,,,/Images/WeatherIcons/{Description}.png";
 
         public WeatherConditions(string item)
         {
             Condition = item;
-            if (item.Length == 3 || item.Length == 5)
-            {
-                Intensity = item[..1];
-            }
-            Description = WeatherCodes.GetDescription(item[-2..2]);
+            Description = WeatherCodes.GetDescription(item.Substring((item.Length - 2), 2));
             Severity = WeatherCodes.GetSeverity(Description);
+            if (item.Contains('+'))
+                Intensity = "Heavy";
+            else if (item.Contains('-'))
+                Intensity = "Light";
         }
-
-
     }
 }

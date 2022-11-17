@@ -24,7 +24,7 @@ namespace BinarWeatherConverter.ViewModels
                     Turbulence.Add(newTurbulence);
                 }
             }
-            WorstTurbulence = (TurbulenceModel)WorstCase();
+            WorstTurbulence = (TurbulenceModel?)WorstCase();
         }
 
         public override object? WorstCase()

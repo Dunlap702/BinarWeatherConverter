@@ -17,7 +17,7 @@ namespace BinarWeatherConverter.ViewModels
         
         public ObservableCollection<WeatherTile> MyWeatherTiles { get; } = new();
 
-        public string path = "code2.txt";
+        public string path = "code5.txt";
 
         public void ReadFile()
         {

@@ -16,7 +16,7 @@ namespace BinarWeatherConverter.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || value is IList<SkyConditionModel> skyCondition && (skyCondition.Count == 0 ||
-                skyCondition[0].Conditon == "SKC"))
+                skyCondition[0].Condition == "SKC"))
                 return Visibility.Collapsed;
             return Visibility.Visible;
         }

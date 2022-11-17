@@ -12,9 +12,9 @@ namespace BinarWeatherConverter.Models
 
         public static int GetSeverity(string code)
         {
-            if (Codes.ContainsKey(code))
+            if (Codes.ContainsValue(code))
             {
-                var obj = Codes.FirstOrDefault(x => x.Key == code);
+                var obj = Codes.FirstOrDefault(x => x.Value == code);
                 return Codes.ToList().IndexOf(obj);
             }
             return 0;
@@ -48,12 +48,12 @@ namespace BinarWeatherConverter.Models
             { "IC", "Ice Crystals" },
             { "PL", "Ice Pellets" },
             { "GR", "Hail" },
-            { "GS", "Snow pellets" },
+            { "GS", "Snow Pellets" },
             { "SS", "Sandstorm" },
             { "TS", "Thunderstorm" },
             { "FZ", "Freezing" },
-            { "FC", "Funnel Cloud" },
-            { "DS", "Dust Storm" },
+            { "FC", "FunnelCloud" },
+            { "DS", "Duststorm" },
             { "VA", "Volcanic Ash" }
         };
     }

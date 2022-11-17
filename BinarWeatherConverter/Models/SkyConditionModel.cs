@@ -8,20 +8,20 @@ namespace BinarWeatherConverter.Models
 {
     public class SkyConditionModel
     {
-        public string? Conditon { get; set; } = "SKC";
+        public string? Condition { get; set; } = "SKC";
         public int BaseHeight { get; set; } = 0;
         public string? Display { get; set; }
-        public string? Image => $@"pack://application:,,,/Images/Backgrounds/{Conditon}.png";
+        public string? Image => $@"pack://application:,,,/Images/Backgrounds/{Condition}.png";
 
         public SkyConditionModel(string item)
         {
             if (!string.IsNullOrEmpty(item))
             {
-                Conditon = item[..3];
-                if (Conditon != "SKC")
+                Condition = item[..3];
+                if (Condition != "SKC")
                 {
                     BaseHeight = Convert.ToInt32(item.Substring(3, 2));
-                    Display = $"{Conditon} {BaseHeight}k ft";
+                    Display = $"{Condition} {BaseHeight}k ft";
                 }
 
             }

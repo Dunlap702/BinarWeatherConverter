@@ -25,7 +25,7 @@
     <None Remove="Images\WeatherIcons\cloudy.png" />
     <None Remove="Images\WeatherIcons\few.png" />
     <None Remove="Images\WeatherIcons\flurries.png" />
-    <None Remove="Images\WeatherIcons\HZ.png" />
+    <None Remove="Images\WeatherIcons\Haze.png" />
     <None Remove="Images\WeatherIcons\mostlycloudy.png" />
     <None Remove="Images\WeatherIcons\mostlysunny.png" />
     <None Remove="Images\WeatherIcons\ovc.png" />
@@ -33,11 +33,11 @@
     <None Remove="Images\WeatherIcons\partlysunny.png" />
     <None Remove="Images\WeatherIcons\rain.png" />
     <None Remove="Images\WeatherIcons\sct.png" />
+    <None Remove="Images\WeatherIcons\Showers.png" />
     <None Remove="Images\WeatherIcons\skc.png" />
-    <None Remove="Images\WeatherIcons\sleet.png" />
     <None Remove="Images\WeatherIcons\snow.png" />
     <None Remove="Images\WeatherIcons\sunny.png" />
-    <None Remove="Images\WeatherIcons\tstorms.png" />
+    <None Remove="Images\WeatherIcons\Thunderstorm.png" />
     <None Remove="Images\WeatherIcons\unknown.png" />
   </ItemGroup>
 
@@ -63,19 +63,19 @@
     <Resource Include="Images\WeatherIcons\cloudy.png" />
     <Resource Include="Images\WeatherIcons\few.png" />
     <Resource Include="Images\WeatherIcons\flurries.png" />
-    <Resource Include="Images\WeatherIcons\HZ.png" />
+    <Resource Include="Images\WeatherIcons\Haze.png" />
     <Resource Include="Images\WeatherIcons\mostlycloudy.png" />
     <Resource Include="Images\WeatherIcons\mostlysunny.png" />
     <Resource Include="Images\WeatherIcons\ovc.png" />
     <Resource Include="Images\WeatherIcons\partlycloudy.png" />
     <Resource Include="Images\WeatherIcons\partlysunny.png" />
-    <Resource Include="Images\WeatherIcons\rain.png" />
+    <Resource Include="Images\WeatherIcons\Rain.png" />
     <Resource Include="Images\WeatherIcons\sct.png" />
     <Resource Include="Images\WeatherIcons\skc.png" />
-    <Resource Include="Images\WeatherIcons\sleet.png" />
-    <Resource Include="Images\WeatherIcons\snow.png" />
+    <Resource Include="Images\WeatherIcons\Showers.png" />
+    <Resource Include="Images\WeatherIcons\Snow.png" />
     <Resource Include="Images\WeatherIcons\sunny.png" />
-    <Resource Include="Images\WeatherIcons\tstorms.png" />
+    <Resource Include="Images\WeatherIcons\Thunderstorm.png" />
     <Resource Include="Images\WeatherIcons\unknown.png" />
   </ItemGroup>
 
