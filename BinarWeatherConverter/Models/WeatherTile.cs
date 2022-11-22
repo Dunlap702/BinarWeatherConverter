@@ -1,9 +1,4 @@
 ﻿using BinarWeatherConverter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.Models
 {
@@ -15,7 +10,6 @@ namespace BinarWeatherConverter.Models
         public WindViewModel WindVM { get; set; } = new();
         public SkyConditionViewModel SkyConditionVM { get; set; } = new();
         public IcingViewModel IcingVM { get; set; } = new();
-        public TemperatureViewModel TemperatureVM { get; set; } = new();
         public VisibilityViewModel VisibilityVM { get; set; } = new();
         public WeatherConditionsViewModel WeatherConditionsVM { get; set; } = new();
 

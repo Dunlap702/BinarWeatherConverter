@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.Models
 {
@@ -12,6 +8,8 @@ namespace BinarWeatherConverter.Models
         public int MinTemp { get; set; }
         public DateTime MaxTempDateTime { get; set; }
         public DateTime MinTempDateTime { get; set; }
+        public string? ForecastMaxTemp { get; set; }
+        public string? ForecastMinTemp { get; set; }
 
         public TemperatureModel(string item)
         {
@@ -27,6 +25,16 @@ namespace BinarWeatherConverter.Models
                     MinTemp = Convert.ToInt32(item.Substring(2, 2));
                     MinTempDateTime = DateTime.ParseExact(item.Substring(5, 4), "ddHH", null);
                 }
+            }
+        }
+        public TemperatureModel(string item, bool isMaxTemp)
+        {
+            if (!string.IsNullOrEmpty(item))
+            {
+                if (isMaxTemp)
+                    ForecastMaxTemp = item;
+                else
+                    ForecastMinTemp = item;
             }
         }
     }

@@ -1,25 +1,35 @@
 ﻿using BinarWeatherConverter.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Automation.Peers;
+using System.Text.RegularExpressions;
 
 namespace BinarWeatherConverter.ViewModels
 {
     public class TemperatureViewModel : BaseViewModel
     {
         public TemperatureModel? Temperature { get; set; }
+        public TemperatureModel? ForecastedTemp { get; set; }
 
         public override void Evaluate(string[] data)
         {
             foreach (string item in data)
             {
-                if(item.Contains("TX") || item.Contains("TN"))
+                if (item.Contains("TX") || item.Contains("TN"))
                 {
                     Temperature = new(item);
                 }
+            }
+        }
+
+        public override void Evaluate(string data, bool isMaxTemp)
+        {
+            if (data.Contains('/'))
+            {
+                var replacedData = Regex.Replace(data, @"Â", "");
+                replacedData = Regex.Replace(replacedData, @"M", "-");
+
+                if (isMaxTemp)
+                    ForecastedTemp = new(replacedData, isMaxTemp);
+                else
+                    ForecastedTemp = new(replacedData, isMaxTemp);
             }
         }
     }

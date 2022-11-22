@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.Models
 {
@@ -10,8 +6,10 @@ namespace BinarWeatherConverter.Models
     {
         public string? Condition { get; set; } = "SKC";
         public int BaseHeight { get; set; } = 0;
-        public string? Display { get; set; }
+        public string? AvationDisplay { get; set; }
+        public string? ForecastDisplay { get; set; }
         public string? Image => $@"pack://application:,,,/Images/Backgrounds/{Condition}.png";
+        public string? ForecastImage => $@"pack://application:,,,/Images/WeatherIcons/{ForecastDisplay}.png";
 
         public SkyConditionModel(string item)
         {
@@ -21,10 +19,18 @@ namespace BinarWeatherConverter.Models
                 if (Condition != "SKC")
                 {
                     BaseHeight = Convert.ToInt32(item.Substring(3, 2));
-                    Display = $"{Condition} {BaseHeight}k ft";
+                    AvationDisplay = $"{Condition} {BaseHeight}k ft";
                 }
-
             }
         }
+
+        public SkyConditionModel(string item, bool isForecast)
+        {
+            if (!string.IsNullOrEmpty(item) && isForecast == true)
+            {
+                ForecastDisplay = item;
+            }
+        }
+
     }
 }

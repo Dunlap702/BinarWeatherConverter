@@ -1,19 +1,14 @@
 ﻿using BinarWeatherConverter.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace BinarWeatherConverter.ViewModels
 {
     public class SkyConditionViewModel : BaseViewModel
     {
         public ObservableCollection<SkyConditionModel> SkyConditions { get; set; } = new();
-        public SkyConditionModel? Condition { get; set; } 
-        
+        public SkyConditionModel? Condition { get; set; }
+        public SkyConditionModel? ForecastCondition { get; set; }
+
         public override void Evaluate(string[] data)
         {
             foreach (string item in data)
@@ -24,6 +19,18 @@ namespace BinarWeatherConverter.ViewModels
                     Condition = new(item);
                     SkyConditions.Add(Condition);
                 }
+            }
+        }
+        public override void Evaluate(string data, bool isForecast)
+        {
+            switch (data)
+            {
+                case "Clear":
+                case "Mostly Sunny":
+                case "Partly Cloudy":
+                case "Cloudy":
+                    ForecastCondition = new(data, isForecast); break;
+                default: break;
             }
         }
     }

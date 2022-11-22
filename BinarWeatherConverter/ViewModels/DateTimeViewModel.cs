@@ -22,5 +22,12 @@ namespace BinarWeatherConverter.ViewModels
                 }
             }
         }
+        public override void Evaluate(string data, bool isForecast)
+        {
+                if (data.Contains(',') && data.Length < 12)
+                {
+                    DateTime = new(data, isForecast);
+                }
+        }
     }
 }

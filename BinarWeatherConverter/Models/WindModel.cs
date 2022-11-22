@@ -15,6 +15,7 @@ namespace BinarWeatherConverter.Models
         public int WindSpeedOne { get; set; }
         public int WindSpeedTwo { get; set; }
         public string? Display { get; set; }
+        public string? ForecastWind { get; set; }
  
         public WindModel(string item)
         {
@@ -49,6 +50,12 @@ namespace BinarWeatherConverter.Models
                 else
                     Display = "Calm";
             }
+        }
+
+        public WindModel(string item, bool isForecast)
+        {
+            if (!string.IsNullOrEmpty(item) && isForecast == true)
+                ForecastWind = item;
         }
 
         public string GetDirection(int value)

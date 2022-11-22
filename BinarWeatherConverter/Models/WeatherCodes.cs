@@ -52,7 +52,7 @@ namespace BinarWeatherConverter.Models
             { "SS", "Sandstorm" },
             { "TS", "Thunderstorm" },
             { "FZ", "Freezing" },
-            { "FC", "FunnelCloud" },
+            { "FC", "Funnelcloud" },
             { "DS", "Duststorm" },
             { "VA", "Volcanic Ash" }
         };

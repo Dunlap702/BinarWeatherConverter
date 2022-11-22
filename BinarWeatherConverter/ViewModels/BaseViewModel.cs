@@ -15,7 +15,9 @@ namespace BinarWeatherConverter.ViewModels
     }
     public abstract class BaseViewModel : IEvaluate
     {
-        public abstract void Evaluate(string[] data);
+        public virtual void Evaluate(string[] data) { }
+
+        public virtual void Evaluate(string data, bool isItem) { }
 
         public virtual object? WorstCase()
         {

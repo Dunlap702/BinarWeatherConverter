@@ -13,21 +13,27 @@ namespace BinarWeatherConverter.Models
 
         public DateTime EndTime { get; set; }
 
-        public string Display
+        public DateTime ForecastDate { get; set; }
+
+        public string AvationDisplay
         {
             get => $"{StartTime:HH:mm} to {EndTime:HH:mm}";
         }
 
-        public DateTimeModel(string item)
+        public DateTimeModel(string weatherItem)
         {
-
-            if (!string.IsNullOrEmpty(item))
+            if (!string.IsNullOrEmpty(weatherItem))
             {
-                StartTime = DateTime.ParseExact(item.Substring(0, 4), "ddHH", null);
-                EndTime = DateTime.ParseExact(item.Substring(5, 4), "ddHH", null);
+                StartTime = DateTime.ParseExact(weatherItem.Substring(0, 4), "ddHH", null);
+                EndTime = DateTime.ParseExact(weatherItem.Substring(5, 4), "ddHH", null);
                 StartTime = StartTime.AddHours(-7);
                 EndTime = EndTime.AddHours(-7);
             }
+        }
+        public DateTimeModel(string forecastItem, bool isForecastItem)
+        {
+            if (!string.IsNullOrEmpty(forecastItem) && isForecastItem == true)
+                ForecastDate = DateTime.ParseExact(forecastItem, "ddd, dd MMM", null);
         }
     }
 }

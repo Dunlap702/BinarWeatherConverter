@@ -15,7 +15,7 @@ namespace BinarWeatherConverter.ViewModels
         {
             foreach (string item in data)
             {
-                if (item.Length >= 1 && item.Length <= 2)
+                if (item.Length == 1 || (item.Length == 2 && item.Contains('+')))
                     Visbility = new(item);
             }
         }

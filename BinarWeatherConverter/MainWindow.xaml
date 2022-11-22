@@ -20,10 +20,10 @@
         <converters:VisibilityConverter x:Key="VisibilityConverter"/>
     </Window.Resources>
     <StackPanel>
-        
+
         <!--Forecast Tiles-->
         <ItemsControl Name="icForecastTiles"
-                  ItemsSource="{Binding ForecastTiles}"
+                  ItemsSource="{Binding MyFocastTiles}"
                   Margin="5">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -33,7 +33,61 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5" BorderThickness="2" BorderBrush="Black">
-                        <Grid></Grid>
+                        <Grid Background="LightSteelBlue">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--Date-->
+                            <TextBlock Grid.Row="0"
+                                Text="{Binding DateTimeVM.DateTime.ForecastDate, StringFormat={}{0:ddd\, dd MMM}}"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,5"/>
+
+                            <!--Image: SkyConditions-->
+                            <Image Grid.Row="1"
+                                   Source="{Binding SkyConditionVM.ForecastCondition.ForecastImage}"
+                                   Height="50"
+                                   Width="50"/>
+
+                            <!--Sky Conditions-->
+                            <TextBlock Grid.Row="2" 
+                                       Text="{Binding SkyConditionVM.ForecastCondition.ForecastDisplay}"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="Bold"
+                                       />
+
+                            <!--Wind-->
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding WindViewModel.ForecastWind.ForecastWind}"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Margin="2"/>
+                            
+                            <!--MaxTemp-->
+                            <TextBlock Grid.Row="4"
+                                       Text="{Binding MaxTempVM.ForecastedTemp.ForecastMaxTemp}"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="Bold"
+                                       Foreground="Red"
+                                       Margin="2"/>
+                            
+                            <!--MinTemp-->
+                            <TextBlock Grid.Row="5"
+                                       Text="{Binding MinTempVM.ForecastedTemp.ForecastMinTemp}"
+                                       HorizontalAlignment="Center"
+                                       Foreground="Blue"
+                                       FontWeight="Bold"/>
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -54,7 +108,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -101,7 +155,7 @@
                             </Grid>
 
                             <!--Date/Time-->
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateTimeVM.DateTime.Display}" 
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateTimeVM.DateTime.AvationDisplay}" 
                                    HorizontalAlignment="Center"
                                    FontWeight="Bold"/>
 
@@ -140,11 +194,14 @@
                             </Grid>
 
                             <!--Weather Condition-->
+                            <Ellipse>
+                                
+                            </Ellipse>
                             <Image Grid.Row="3" Grid.Column="1" 
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Height="100"
-                               Width="75"
+                               Height="80"
+                               Width="80"
                                Source="{Binding WeatherConditionsVM.WorstWeather.Image}" Stretch="UniformToFill"/>
 
                             <!--Sky Conditions-->
@@ -157,7 +214,7 @@
                                       FontFamily="Cascadia Mono Light">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Display}"/>
+                                        <TextBlock Text="{Binding AvationDisplay}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
