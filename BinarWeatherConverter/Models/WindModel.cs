@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BinarWeatherConverter.Models
 {
@@ -16,7 +12,7 @@ namespace BinarWeatherConverter.Models
         public int WindSpeedTwo { get; set; }
         public string? Display { get; set; }
         public string? ForecastWind { get; set; }
- 
+
         public WindModel(string item)
         {
             if (!string.IsNullOrEmpty(item))

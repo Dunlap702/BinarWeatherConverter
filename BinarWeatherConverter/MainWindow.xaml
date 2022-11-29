@@ -35,7 +35,7 @@
                     <Border Margin="5" BorderThickness="2" BorderBrush="Black">
                         <Grid Background="LightSteelBlue">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -50,8 +50,7 @@
                             <TextBlock Grid.Row="0"
                                 Text="{Binding DateTimeVM.DateTime.ForecastDate, StringFormat={}{0:ddd\, dd MMM}}"
                                        HorizontalAlignment="Center"
-                                       FontWeight="Bold"
-                                       Margin="0,0,0,5"/>
+                                       FontWeight="Bold"/>
 
                             <!--Image: SkyConditions-->
                             <Image Grid.Row="1"
@@ -72,15 +71,15 @@
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
                                        Margin="2"/>
-                            
+
                             <!--MaxTemp-->
                             <TextBlock Grid.Row="4"
                                        Text="{Binding MaxTempVM.ForecastedTemp.ForecastMaxTemp}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
-                                       Foreground="Red"
+                                       Foreground="#FFA70A0A"
                                        Margin="2"/>
-                            
+
                             <!--MinTemp-->
                             <TextBlock Grid.Row="5"
                                        Text="{Binding MinTempVM.ForecastedTemp.ForecastMinTemp}"
@@ -127,7 +126,7 @@
                             <Image Grid.Row="2" Grid.Column="0" 
                                Grid.RowSpan="3"
                                Grid.ColumnSpan="3"
-                               Height="350"
+                               Height="325"
                                Width="250"
                                Source="{Binding SkyConditionVM.Condition.Image}" Stretch="UniformToFill"/>
 
@@ -160,7 +159,8 @@
                                    FontWeight="Bold"/>
 
                             <!--Icing-->
-                            <Grid Grid.Row="2" Grid.Column="0" DataContext="{Binding IcingVM.WorstIcing}">
+                            <Grid Grid.Row="2" Grid.Column="0" DataContext="{Binding IcingVM.WorstIcing}"
+                                  Grid.ColumnSpan="3">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
@@ -177,7 +177,9 @@
                             </Grid>
 
                             <!--Turbulence-->
-                            <Grid Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" DataContext="{Binding TurbulenceVM.WorstTurbulence}">
+                            <Grid Grid.Row="2" Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  HorizontalAlignment="Right" DataContext="{Binding TurbulenceVM.WorstTurbulence}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
@@ -194,20 +196,34 @@
                             </Grid>
 
                             <!--Weather Condition-->
-                            <Ellipse>
-                                
-                            </Ellipse>
-                            <Image Grid.Row="3" Grid.Column="1" 
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Height="80"
-                               Width="80"
-                               Source="{Binding WeatherConditionsVM.WorstWeather.Image}" Stretch="UniformToFill"/>
+                            <Grid Grid.Row="3" Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  HorizontalAlignment="Center">
+                                <Border HorizontalAlignment="Center" x:Name="circularBorder" Margin="20" Opacity=".33"
+                                    CornerRadius="{Binding Path=ActualHeight, ElementName=circularBorder}" 
+                                    Width="{Binding Path=ActualHeight, ElementName=circularBorder}" OpacityMask="Black"
+                                    Visibility="{Binding WeatherConditionsVM.WorstWeather, Converter={StaticResource VisibilityConverter}}">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="LightSlateGray" Offset="0.33"/>
+                                            <GradientStop Color="DarkBlue" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Image 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Height="80"
+                                    Width="80"
+                                    Source="{Binding WeatherConditionsVM.WorstWeather.Image}" Stretch="UniformToFill"/>
+                            </Grid>
 
                             <!--Sky Conditions-->
                             <ItemsControl Grid.Row="4" Grid.Column="0" ItemsSource="{Binding SkyConditionVM.SkyConditions}" 
+                                      Grid.ColumnSpan="2"
                                       FontWeight="Bold"
                                       VerticalAlignment="Bottom"
+                                      HorizontalAlignment="Left"
                                       Background="#7F000000"
                                       Foreground="White"
                                       Visibility="{Binding SkyConditionVM.SkyConditions, Converter={StaticResource SkyConditionConverter}}" 
@@ -220,7 +236,8 @@
                             </ItemsControl>
 
                             <!--Wind-->
-                            <TextBlock Grid.Row="4" Grid.Column="2" Text="{Binding WindVM.Wind.Display}" 
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WindVM.Wind.Display}" 
+                                   Grid.ColumnSpan="2"
                                    FontWeight="Bold" FontFamily="Cascadia Mono Light"
                                    VerticalAlignment="Bottom"
                                    HorizontalAlignment="Right"

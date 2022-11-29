@@ -74,7 +74,6 @@
     <Resource Include="Images\WeatherIcons\chancetstorms.png" />
     <Resource Include="Images\WeatherIcons\Clear2.png" />
     <Resource Include="Images\WeatherIcons\Cloudy.png" />
-    <Resource Include="Images\WeatherIcons\Dust Storm2.png" />
     <Resource Include="Images\WeatherIcons\Duststorm.png" />
     <Resource Include="Images\WeatherIcons\Mostly Sunny.png" />
     <Resource Include="Images\WeatherIcons\flurries.png" />

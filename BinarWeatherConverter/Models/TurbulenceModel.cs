@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace BinarWeatherConverter.Models
+﻿namespace BinarWeatherConverter.Models
 {
     public class TurbulenceModel
     {

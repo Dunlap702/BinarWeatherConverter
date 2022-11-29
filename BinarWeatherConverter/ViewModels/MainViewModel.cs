@@ -9,7 +9,7 @@ namespace BinarWeatherConverter.ViewModels
         public ObservableCollection<WeatherTile> MyWeatherTiles { get; } = new();
         public ObservableCollection<ForecastTile> MyFocastTiles { get; } = new();
 
-        public string avationFile = "code4.txt";
+        public string avationFile = "code2.txt";
         public string forecastFile = "forecast.txt";
 
         public void ReadFile()
