@@ -104,4 +104,16 @@
     <Resource Include="Images\WeatherIcons\unknown.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="AviationCodeExample.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FilePaths.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ForecastExample.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

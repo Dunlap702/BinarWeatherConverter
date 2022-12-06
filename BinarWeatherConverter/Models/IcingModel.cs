@@ -12,16 +12,16 @@
             {
                 return Severity switch
                 {
-                    0 => "No \nIcing",
-                    1 => "Light \nIcing",
-                    2 => "Moderate \nIcing",
-                    3 => "Moderate+ \nIcing",
-                    4 => "Mod/Severe \nIcing",
-                    5 => "Mod/Severe+ \nIcing",
-                    6 => "Severe \nIcing",
-                    7 => "Severe+ \nIcing",
-                    8 => "Extreme \nIcing",
-                    9 => "Deadly \nIcing",
+                    0 => "No\nIcing",
+                    1 => "Light\nIcing",
+                    2 => "Moderate\nIcing",
+                    3 => "Moderate+\nIcing",
+                    4 => "Mod/Severe\nIcing",
+                    5 => "Mod/Severe+\nIcing",
+                    6 => "Severe\nIcing",
+                    7 => "Severe+\nIcing",
+                    8 => "Extreme\nIcing",
+                    9 => "Deadly\nIcing",
                     _ => "No Icing",
                 };
             }

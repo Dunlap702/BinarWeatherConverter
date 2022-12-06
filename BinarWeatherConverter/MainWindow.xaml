@@ -20,6 +20,13 @@
         <converters:VisibilityConverter x:Key="VisibilityConverter"/>
     </Window.Resources>
     <StackPanel>
+        <Menu Background="LightSteelBlue">
+            <MenuItem Header="Station" FontWeight="Bold">
+                <MenuItem Name="menuStation3" Header="Station 3" Click="menuStation3_Click"/>
+                <MenuItem Name="menuStation7" Header="Station 7" Click="menuStation7_Click"/>
+                <MenuItem Name="menuExample" Header="Example" Click="menuExample_Click"/>
+            </MenuItem>
+        </Menu>
 
         <!--Forecast Tiles-->
         <ItemsControl Name="icForecastTiles"
@@ -127,7 +134,7 @@
                                Grid.RowSpan="3"
                                Grid.ColumnSpan="3"
                                Height="325"
-                               Width="250"
+                               Width="220"
                                Source="{Binding SkyConditionVM.Condition.Image}" Stretch="UniformToFill"/>
 
                             <!--Station/Status-->

@@ -1,6 +1,6 @@
-﻿S3Codes://
-S3Extended:
-S7Codes:
-S7Extended:
-CodesExample:AvationCodeExample.txt
-ForecastExample:ForecastExample.txt
+﻿S3Aviation: code2.txt
+S3Extended: ForecastExample.txt
+S7Aviation: code3.txt
+S7Extended: ForecastExample.txt
+CodesExample: AvationCodeExample.txt
+ForecastExample: ForecastExample.txt

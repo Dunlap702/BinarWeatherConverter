@@ -22,11 +22,33 @@ namespace BinarWeatherConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainViewModel mvm;
+
         public MainWindow()
         {
             InitializeComponent();
             if (DataContext is MainViewModel view)
+            {
+                mvm = view;
                 view.ReadFile();
+                mvm.GetTiles("example");
+            }
+        }
+
+        private void menuStation3_Click(object sender, RoutedEventArgs e)
+        {
+            mvm.GetTiles("station3");
+            
+        }
+
+        private void menuStation7_Click(object sender, RoutedEventArgs e)
+        {
+            mvm.GetTiles("station7");
+        }
+
+        private void menuExample_Click(object sender, RoutedEventArgs e)
+        {
+            mvm.GetTiles("example");
         }
     }
 }

@@ -6,6 +6,24 @@ namespace BinarWeatherConverter.Models
 {
     internal class FileReader
     {
+        public static List<string[]> ReadPathsFile(string path)
+        {
+            List<string[]> whatIReturn = new();
+
+            if (File.Exists(path))
+            {
+                using StreamReader sr = new(path);
+                while (!sr.EndOfStream)
+                {
+                    string? lineOfPaths = sr.ReadLine();
+
+                    if (!string.IsNullOrEmpty(lineOfPaths))
+                        whatIReturn.Add(lineOfPaths.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries));
+                }
+            }
+
+            return whatIReturn;
+        }
         public static List<string[]> ReadAvationFile(string path)
         {
             List<string[]> whatIReturn = new();

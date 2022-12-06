@@ -14,15 +14,15 @@
                 return Severity switch
                 {
                     0 => "No Turbulence",
-                    1 => "Light \nTurbulence",
-                    2 => "Moderate \nTurbulence",
-                    3 => "Moderate+ \nTurbulence",
-                    4 => "Mod/Severe \nTurbulence",
-                    5 => "Mod/Severe+ \nTurbulence",
-                    6 => "Severe \nTurbulence",
-                    7 => "Severe+ \nTurbulence",
-                    8 => "Extreme \nTurbulence",
-                    9 => "Deadly \nTurbulence",
+                    1 => "Light\nTurbulence",
+                    2 => "Moderate\nTurbulence",
+                    3 => "Moderate+\nTurbulence",
+                    4 => "Mod/Severe\nTurbulence",
+                    5 => "Mod/Severe+\nTurbulence",
+                    6 => "Severe\nTurbulence",
+                    7 => "Severe+\nTurbulence",
+                    8 => "Extreme\nTurbulence",
+                    9 => "Deadly\nTurbulence",
                     _ => "No Turbulence",
                 };
             }
