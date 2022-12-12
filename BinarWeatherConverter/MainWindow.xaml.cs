@@ -1,19 +1,7 @@
-﻿using BinarWeatherConverter.Models;
-using BinarWeatherConverter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BinarWeatherConverter.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System;
+using System.Linq;
 
 namespace BinarWeatherConverter
 {
@@ -22,33 +10,40 @@ namespace BinarWeatherConverter
     /// </summary>
     public partial class MainWindow : Window
     {
-        MainViewModel mvm;
+        readonly MainViewModel? mvm;
 
         public MainWindow()
         {
             InitializeComponent();
-            if (DataContext is MainViewModel view)
-            {
-                mvm = view;
-                view.ReadFile();
-                mvm.GetTiles("example");
-            }
+            mvm = DataContext as MainViewModel;
+
+            mvm?.ReadFile();
+            MainViewModel.LocationType location;
+            location = (MainViewModel.LocationType)Enum.Parse(typeof(MainViewModel.LocationType), 
+                                    Settings1.Default.LastViewedStation);
+                        //Settings1.Default.LastViewedStation); 
+            mvm?.GetTiles(location);
         }
 
         private void menuStation3_Click(object sender, RoutedEventArgs e)
         {
-            mvm.GetTiles("station3");
-            
+            mvm?.GetTiles(MainViewModel.LocationType.Station3);
+
         }
 
         private void menuStation7_Click(object sender, RoutedEventArgs e)
         {
-            mvm.GetTiles("station7");
+            mvm?.GetTiles(MainViewModel.LocationType.Station7);
         }
 
         private void menuExample_Click(object sender, RoutedEventArgs e)
         {
-            mvm.GetTiles("example");
+            mvm?.GetTiles(MainViewModel.LocationType.Example);
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            Settings1.Default.Save();
         }
     }
 }

@@ -8,6 +8,7 @@
         xmlns:converters="clr-namespace:BinarWeatherConverter.Converters"
         xmlns:data="clr-namespace:BinarWeatherConverter.ViewModels"
         mc:Ignorable="d"
+        Closed="Window_Closed"
         Title="Binar Weather Converter" 
         SizeToContent="WidthAndHeight" 
         Background="SlateGray" Topmost="True" d:DesignHeight="225.031" d:DesignWidth="568.058"
@@ -111,11 +112,11 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Margin="5" BorderThickness="2" BorderBrush="Black">
-                        <Grid>
+                        <Grid MaxWidth="220">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -133,9 +134,8 @@
                             <Image Grid.Row="2" Grid.Column="0" 
                                Grid.RowSpan="3"
                                Grid.ColumnSpan="3"
-                               Height="325"
-                               Width="220"
-                               Source="{Binding SkyConditionVM.Condition.Image}" Stretch="UniformToFill"/>
+
+                               Source="{Binding SkyConditionVM.Condition.Image}" Stretch="Fill"/>
 
                             <!--Station/Status-->
                             <TextBlock Grid.Row="0" Grid.Column="1" 

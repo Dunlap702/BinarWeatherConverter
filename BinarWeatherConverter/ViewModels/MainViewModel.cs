@@ -1,12 +1,19 @@
 ﻿using BinarWeatherConverter.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace BinarWeatherConverter.ViewModels
 {
     public class MainViewModel
     {
-
+        public enum LocationType
+        {
+            Station3,
+            Station7,
+            [Description("This uses a local example that I made")]
+            Example
+        }
         public ObservableCollection<WeatherTile> MyWeatherTiles { get; } = new();
         public ObservableCollection<ForecastTile> MyFocastTiles { get; } = new();
 
@@ -25,23 +32,24 @@ namespace BinarWeatherConverter.ViewModels
             }
         }
 
-        public void GetTiles(string station)
+        public void GetTiles(LocationType type = LocationType.Example)
         {
-            if (station.Equals("station3"))
+            if (type == LocationType.Station3)
             {
                 GetWeatherTiles(codeFilePaths[0]);
                 GetForecastTiles(codeFilePaths[1]);
             }
-            else if (station.Equals("station7"))
+            else if (type == LocationType.Station7)
             {
                 GetWeatherTiles(codeFilePaths[2]);
                 GetForecastTiles(codeFilePaths[3]);
             }
-            else if (station.Equals("example"))
+            else if (type == LocationType.Example)
             {
                 GetWeatherTiles("AviationCodeExample.txt");
                 GetForecastTiles("ForecastExample.txt");
             }
+            Settings1.Default.LastViewedStation = ((int)type).ToString();
         }
 
         private void GetWeatherTiles(string path)
