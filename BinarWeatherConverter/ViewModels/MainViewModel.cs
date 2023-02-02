@@ -1,11 +1,13 @@
 ﻿using BinarWeatherConverter.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace BinarWeatherConverter.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         public enum LocationType
         {
@@ -14,13 +16,57 @@ namespace BinarWeatherConverter.ViewModels
             [Description("This uses a local example that I made")]
             Example
         }
+         
+        private FileWatcher watcher;
+        private DateTime lastUpdated;
+
+        public DateTime LastUpdated
+        {
+            get { return lastUpdated; }
+            set { lastUpdated = value; OnPropertyChanged(nameof(LastUpdated)); }
+        }
+        public MainViewModel()
+        {
+            CommandRefresh = new Commands.Command(Refresh);
+
+            watcher = new(this);
+            watcher.FileWatcherEvent += Watcher_FileWatcherEvent;
+        }
+
+        private void Watcher_FileWatcherEvent(object? sender, EventArgs e)
+        {
+            System.Windows.Threading.Dispatcher dp = App.Current.Dispatcher;
+            if (dp.CheckAccess())
+                Refresh();
+            else
+            {
+                //Continue to invoke it until we find it
+                dp.Invoke(() => Watcher_FileWatcherEvent(sender, e));
+            }
+        }
+
+        public LocationType SelectedLocation
+        {
+            get => selectedLocation;
+            set
+            {
+                selectedLocation = value;
+                OnPropertyChanged(nameof(SelectedLocation));
+            }
+        }
+
         public ObservableCollection<WeatherTile> MyWeatherTiles { get; } = new();
         public ObservableCollection<ForecastTile> MyFocastTiles { get; } = new();
 
+        public ICommand CommandRefresh { get; set; }
         public List<string> codeFilePaths = new();
-        public string exampleAviation = "AviationCodeExample.txt";
-        public string exampleForecast = "ForecastExample.txt";
+        private LocationType selectedLocation;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public void ReadFile()
         {
@@ -34,6 +80,8 @@ namespace BinarWeatherConverter.ViewModels
 
         public void GetTiles(LocationType type = LocationType.Example)
         {
+            LastUpdated = DateTime.Now;
+
             if (type == LocationType.Station3)
             {
                 GetWeatherTiles(codeFilePaths[0]);
@@ -49,6 +97,7 @@ namespace BinarWeatherConverter.ViewModels
                 GetWeatherTiles("AviationCodeExample.txt");
                 GetForecastTiles("ForecastExample.txt");
             }
+            SelectedLocation = type;
             Settings1.Default.LastViewedStation = ((int)type).ToString();
         }
 
@@ -56,6 +105,7 @@ namespace BinarWeatherConverter.ViewModels
         {
             MyWeatherTiles.Clear();
             var fileData = FileReader.ReadAvationFile(path);
+            watcher.Watch(path);
 
             if (fileData != null && fileData.Count > 0)
             {
@@ -82,6 +132,11 @@ namespace BinarWeatherConverter.ViewModels
                     MyFocastTiles.Add(tile);
                 }
             }
+        }
+
+        internal void Refresh()
+        {
+            GetTiles(SelectedLocation);
         }
     }
 }

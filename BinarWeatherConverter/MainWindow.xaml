@@ -9,9 +9,10 @@
         xmlns:data="clr-namespace:BinarWeatherConverter.ViewModels"
         mc:Ignorable="d"
         Closed="Window_Closed"
-        Title="Binar Weather Converter" 
+        Title="{Binding SelectedLocation, Converter={StaticResource LocationConverter}}" 
         SizeToContent="WidthAndHeight" 
-        Background="SlateGray" Topmost="True" d:DesignHeight="225.031" d:DesignWidth="568.058"
+        Topmost="False" d:DesignHeight="225.031" d:DesignWidth="568.058"
+        KeyDown="Window_KeyDown"
         >
     <Window.DataContext>
         <data:MainViewModel/>
@@ -20,213 +21,236 @@
         <converters:SkyConditionVisibilityConverter x:Key="SkyConditionConverter"/>
         <converters:VisibilityConverter x:Key="VisibilityConverter"/>
     </Window.Resources>
-    <StackPanel>
-        <Menu Background="LightSteelBlue">
+
+    <DockPanel Background="Black">
+
+        <Menu DockPanel.Dock="Top" Background="LightSteelBlue">
             <MenuItem Header="Station" FontWeight="Bold">
                 <MenuItem Name="menuStation3" Header="Station 3" Click="menuStation3_Click"/>
                 <MenuItem Name="menuStation7" Header="Station 7" Click="menuStation7_Click"/>
                 <MenuItem Name="menuExample" Header="Example" Click="menuExample_Click"/>
             </MenuItem>
+            <MenuItem FontWeight="Bold" Command="{Binding CommandRefresh}">
+                <MenuItem.Header>
+                    <TextBlock>
+                        <Run Text="Refresh"/>
+                        <Run Text="(F5)"
+                             FontSize="8"
+                             BaselineAlignment="Top"/>
+                    </TextBlock>
+                </MenuItem.Header>
+            </MenuItem>
         </Menu>
 
-        <!--Forecast Tiles-->
-        <ItemsControl Name="icForecastTiles"
+        <StatusBar DockPanel.Dock="Bottom" Background="LightSteelBlue">
+            <StatusBarItem>
+                <TextBlock>
+                    <Run Text="Last Updated"/>
+                    <Run Text="{Binding LastUpdated, Mode=OneWay}"/>
+                </TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        
+        <StackPanel>
+
+            <!--Forecast Tiles-->
+            <ItemsControl Name="icForecastTiles"
                   ItemsSource="{Binding MyFocastTiles}"
                   Margin="5">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" BorderThickness="2" BorderBrush="Black">
-                        <Grid Background="LightSteelBlue">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                            <Grid Background="{StaticResource GeneralBackground}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                            <!--Date-->
-                            <TextBlock Grid.Row="0"
+                                <!--Date-->
+                                <TextBlock Grid.Row="0"
                                 Text="{Binding DateTimeVM.DateTime.ForecastDate, StringFormat={}{0:ddd\, dd MMM}}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"/>
 
-                            <!--Image: SkyConditions-->
-                            <Image Grid.Row="1"
+                                <!--Image: SkyConditions-->
+                                <Image Grid.Row="1"
                                    Source="{Binding SkyConditionVM.ForecastCondition.ForecastImage}"
                                    Height="50"
                                    Width="50"/>
 
-                            <!--Sky Conditions-->
-                            <TextBlock Grid.Row="2" 
+                                <!--Sky Conditions-->
+                                <TextBlock Grid.Row="2" 
                                        Text="{Binding SkyConditionVM.ForecastCondition.ForecastDisplay}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
                                        />
 
-                            <!--Wind-->
-                            <TextBlock Grid.Row="3"
+                                <!--Wind-->
+                                <TextBlock Grid.Row="3"
                                        Text="{Binding WindViewModel.ForecastWind.ForecastWind}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
                                        Margin="2"/>
 
-                            <!--MaxTemp-->
-                            <TextBlock Grid.Row="4"
+                                <!--MaxTemp-->
+                                <TextBlock Grid.Row="4"
                                        Text="{Binding MaxTempVM.ForecastedTemp.ForecastMaxTemp}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
                                        Foreground="#FFA70A0A"
                                        Margin="2"/>
 
-                            <!--MinTemp-->
-                            <TextBlock Grid.Row="5"
+                                <!--MinTemp-->
+                                <TextBlock Grid.Row="5"
                                        Text="{Binding MinTempVM.ForecastedTemp.ForecastMinTemp}"
                                        HorizontalAlignment="Center"
                                        Foreground="Blue"
                                        FontWeight="Bold"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <!-- Aviation Weather Tiles -->
-        <ItemsControl Name="icMyWeatherTiles"
+            <!-- Aviation Weather Tiles -->
+            <ItemsControl Name="icMyWeatherTiles"
                   ItemsSource="{Binding MyWeatherTiles}"
                   Margin="5">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border Margin="5" BorderThickness="2" BorderBrush="Black">
-                        <Grid MaxWidth="220">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="5" BorderThickness="2" BorderBrush="Black">
+                            <Grid MaxWidth="220">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                            <!--Background color for each tile-->
-                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
-                                   Background="LightSteelBlue"/>
+                                <!--Background color for each tile-->
+                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4"
+                                   Background="{StaticResource GeneralBackground}"/>
 
-                            <!--Sky Conditon Backgrounds-->
-                            <Image Grid.Row="2" Grid.Column="0" 
+                                <!--Sky Conditon Backgrounds-->
+                                <Image Grid.Row="2" Grid.Column="0" 
                                Grid.RowSpan="3"
                                Grid.ColumnSpan="3"
 
                                Source="{Binding SkyConditionVM.Condition.Image}" Stretch="Fill"/>
 
-                            <!--Station/Status-->
-                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                <!--Station/Status-->
+                                <TextBlock Grid.Row="0" Grid.Column="1" 
                                    Text="{Binding StationStatusVM.StationStatus.StationStatus}" 
                                    HorizontalAlignment="Center"
                                    FontWeight="Bold"/>
 
-                            <!--Visibility-->
-                            <Grid Grid.Row="1" Grid.Column="2" 
+                                <!--Visibility-->
+                                <Grid Grid.Row="1" Grid.Column="2" 
                               HorizontalAlignment="Right" DataContext="{Binding VisibilityVM.Visbility}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="1"  Text="{Binding Visibility}"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="1"  Text="{Binding Visibility}"
                                       FontWeight="Bold"
                                        Margin="1"
                                       HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
                                       Visibility="{Binding Visibility, Converter={StaticResource VisibilityConverter}}"/>
-                            </Grid>
+                                </Grid>
 
-                            <!--Date/Time-->
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateTimeVM.DateTime.AvationDisplay}" 
+                                <!--Date/Time-->
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateTimeVM.DateTime.AvationDisplay}" 
                                    HorizontalAlignment="Center"
                                    FontWeight="Bold"/>
 
-                            <!--Icing-->
-                            <Grid Grid.Row="2" Grid.Column="0" DataContext="{Binding IcingVM.WorstIcing}"
+                                <!--Icing-->
+                                <Grid Grid.Row="2" Grid.Column="0" DataContext="{Binding IcingVM.WorstIcing}"
                                   Grid.ColumnSpan="3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding GetIntensity}"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding GetIntensity}"
                                       FontWeight="Bold"
                                       VerticalAlignment="Bottom"
                                       Background="#7F000000"
                                       Foreground="White"
                                       Visibility="{Binding GetIntensity, Converter={StaticResource VisibilityConverter}}" 
                                       FontFamily="Cascadia Mono Light"/>
-                            </Grid>
+                                </Grid>
 
-                            <!--Turbulence-->
-                            <Grid Grid.Row="2" Grid.Column="0"
+                                <!--Turbulence-->
+                                <Grid Grid.Row="2" Grid.Column="0"
                                   Grid.ColumnSpan="3"
                                   HorizontalAlignment="Right" DataContext="{Binding TurbulenceVM.WorstTurbulence}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding GetIntensity}"
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding GetIntensity}"
                                       FontWeight="Bold"
                                       VerticalAlignment="Bottom"
                                       Background="#7F000000"
                                       Foreground="White"
                                       Visibility="{Binding GetIntensity, Converter={StaticResource VisibilityConverter}}" 
                                       FontFamily="Cascadia Mono Light"/>
-                            </Grid>
+                                </Grid>
 
-                            <!--Weather Condition-->
-                            <Grid Grid.Row="3" Grid.Column="0"
+                                <!--Weather Condition-->
+                                <Grid Grid.Row="3" Grid.Column="0"
                                   Grid.ColumnSpan="3"
                                   HorizontalAlignment="Center">
-                                <Border HorizontalAlignment="Center" x:Name="circularBorder" Margin="20" Opacity=".33"
+                                    <Border HorizontalAlignment="Center" x:Name="circularBorder" Margin="20" Opacity=".33"
                                     CornerRadius="{Binding Path=ActualHeight, ElementName=circularBorder}" 
                                     Width="{Binding Path=ActualHeight, ElementName=circularBorder}" OpacityMask="Black"
                                     Visibility="{Binding WeatherConditionsVM.WorstWeather, Converter={StaticResource VisibilityConverter}}">
-                                    <Border.Background>
-                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                            <GradientStop Color="LightSlateGray" Offset="0.33"/>
-                                            <GradientStop Color="DarkBlue" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Border.Background>
-                                </Border>
-                                <Image 
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="LightSlateGray" Offset="0.33"/>
+                                                <GradientStop Color="DarkBlue" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Image 
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     Height="80"
                                     Width="80"
                                     Source="{Binding WeatherConditionsVM.WorstWeather.Image}" Stretch="UniformToFill"/>
-                            </Grid>
+                                </Grid>
 
-                            <!--Sky Conditions-->
-                            <ItemsControl Grid.Row="4" Grid.Column="0" ItemsSource="{Binding SkyConditionVM.SkyConditions}" 
+                                <!--Sky Conditions-->
+                                <ItemsControl Grid.Row="4" Grid.Column="0" ItemsSource="{Binding SkyConditionVM.SkyConditions}" 
                                       Grid.ColumnSpan="2"
                                       FontWeight="Bold"
                                       VerticalAlignment="Bottom"
@@ -235,25 +259,26 @@
                                       Foreground="White"
                                       Visibility="{Binding SkyConditionVM.SkyConditions, Converter={StaticResource SkyConditionConverter}}" 
                                       FontFamily="Cascadia Mono Light">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding AvationDisplay}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding AvationDisplay}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
-                            <!--Wind-->
-                            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WindVM.Wind.Display}" 
+                                <!--Wind-->
+                                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding WindVM.Wind.Display}" 
                                    Grid.ColumnSpan="2"
                                    FontWeight="Bold" FontFamily="Cascadia Mono Light"
                                    VerticalAlignment="Bottom"
                                    HorizontalAlignment="Right"
                                    Background="#7F000000"
                                    Foreground="White"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </DockPanel>
 </Window>

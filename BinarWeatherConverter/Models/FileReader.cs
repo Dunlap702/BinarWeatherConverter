@@ -20,6 +20,7 @@ namespace BinarWeatherConverter.Models
                     if (!string.IsNullOrEmpty(lineOfPaths))
                         whatIReturn.Add(lineOfPaths.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries));
                 }
+                sr.Close();
             }
 
             return whatIReturn;

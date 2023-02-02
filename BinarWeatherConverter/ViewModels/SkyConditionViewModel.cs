@@ -29,7 +29,8 @@ namespace BinarWeatherConverter.ViewModels
                 case "Mostly Sunny":
                 case "Partly Cloudy":
                 case "Cloudy":
-                    ForecastCondition = new(data, isForecast); break;
+                    ForecastCondition = new(data, isForecast); 
+                    break;
                 default: break;
             }
         }

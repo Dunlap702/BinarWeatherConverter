@@ -13,6 +13,7 @@
             Condition = item;
             Description = WeatherCodes.GetDescription(item.Substring((item.Length - 2), 2));
             Severity = WeatherCodes.GetSeverity(Description);
+
             if (item.Contains('+'))
                 Intensity = "Heavy";
             else if (item.Contains('-'))

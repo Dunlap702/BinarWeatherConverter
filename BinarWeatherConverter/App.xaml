@@ -1,9 +1,18 @@
 ﻿<Application x:Class="BinarWeatherConverter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BinarWeatherConverter"
+             xmlns:local="clr-namespace:BinarWeatherConverter" 
+             xmlns:converter="clr-namespace:BinarWeatherConverter.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <converter:LocationConverter x:Key="LocationConverter"/>
+
+        <SolidColorBrush x:Key="GeneralBackground" Color="SteelBlue"/>
+
+        <!--<LinearGradientBrush x:Key="GeneralBackground" EndPoint="0,0" StartPoint="1,1">
+            <GradientStop Color="#FF1A9CFF" Offset="0.75"/>
+            <GradientStop Color="#FFFF618D" Offset="0.254"/>
+        </LinearGradientBrush>-->
+
     </Application.Resources>
 </Application>

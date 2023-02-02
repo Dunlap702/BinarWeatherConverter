@@ -1,7 +1,6 @@
 ﻿using BinarWeatherConverter.ViewModels;
-using System.Windows;
 using System;
-using System.Linq;
+using System.Windows;
 
 namespace BinarWeatherConverter
 {
@@ -18,10 +17,11 @@ namespace BinarWeatherConverter
             mvm = DataContext as MainViewModel;
 
             mvm?.ReadFile();
+
             MainViewModel.LocationType location;
-            location = (MainViewModel.LocationType)Enum.Parse(typeof(MainViewModel.LocationType), 
-                                    Settings1.Default.LastViewedStation);
-                        //Settings1.Default.LastViewedStation); 
+            location = (MainViewModel.LocationType)Enum.Parse(typeof(MainViewModel.LocationType),
+                        Settings1.Default.LastViewedStation);
+
             mvm?.GetTiles(location);
         }
 
@@ -44,6 +44,12 @@ namespace BinarWeatherConverter
         private void Window_Closed(object sender, System.EventArgs e)
         {
             Settings1.Default.Save();
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.F5)
+                mvm?.Refresh();
         }
     }
 }

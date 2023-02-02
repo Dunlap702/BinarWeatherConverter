@@ -1,4 +1,4 @@
-﻿Wed, 16 Nov
+﻿Wed, 01 Feb
 few_sun.GIF
 Mostly Sunny
 
@@ -6,7 +6,7 @@ Mostly Sunny
 Calm
 57Â°F / 14Â°C
 23Â°F / M05Â°C
-Thu, 17 Nov
+Thu, 02 Feb
 skc_sun.GIF
 Clear
 
@@ -14,7 +14,7 @@ Clear
 VRB 5-10 kt
 54Â°F / 12Â°C
 21Â°F / M06Â°C
-Fri, 18 Nov
+Fri, 03 Feb
 few_sun.GIF
 Mostly Sunny
 
@@ -22,7 +22,7 @@ Mostly Sunny
 NE 10 - 20 kt
 48Â°F / 09Â°C
 18Â° / M08Â°C
-Sat, 19 Nov
+Sat, 04 Feb
 skc_sun.GIF
 Clear
 
@@ -30,7 +30,7 @@ Clear
 NE 5 - 15 kt
 46Â°F / 08Â°C
 18Â°F / M08Â°C
-Sun, 20 Nov
+Sun, 05 Feb
 few_sun.GIF
 Mostly Sunny
 
@@ -38,7 +38,7 @@ Mostly Sunny
 NE 5 - 15 kt
 52Â°F / 11Â°C
 18Â°F / M08Â°C
-Mon, 21 Nov
+Mon, 06 Feb
 few_sun.GIF
 Mostly Sunny
 
@@ -46,7 +46,7 @@ Mostly Sunny
 VRB 10 - 20 kt
 54Â°F / 12Â°C
 18Â°F / M08Â°C
-Tue, 22 Nov
+Tue, 07 Feb
 sct_sun.GIF
 Partly Cloudy
 
@@ -54,4 +54,4 @@ Partly Cloudy
 NE 5 - 15 kt
 54Â°F / 12Â°C
 24Â°F / M04Â°C
-Wednesday, 16 November 2022, 11:46Z by Stormy Weathers
+Tuesday, 31 January 2023, 11:46Z by Stormy Weathers

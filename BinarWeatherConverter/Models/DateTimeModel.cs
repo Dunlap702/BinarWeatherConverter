@@ -17,12 +17,18 @@ namespace BinarWeatherConverter.Models
 
         public DateTimeModel(string weatherItem)
         {
+            // Avation codes will use 2400 for midnight which is not a valid time.
+            if (weatherItem.Contains("24"))
+                weatherItem = weatherItem.Replace("24", "00");
+
             if (!string.IsNullOrEmpty(weatherItem))
             {
-                StartTime = DateTime.ParseExact(weatherItem.Substring(0, 4), "ddHH", null);
+                StartTime = DateTime.ParseExact(weatherItem[..4], "ddHH", null);
                 EndTime = DateTime.ParseExact(weatherItem.Substring(5, 4), "ddHH", null);
-                StartTime = StartTime.AddHours(-7);
-                EndTime = EndTime.AddHours(-7);
+
+                // Adjust for Zulu time to local time
+                StartTime = StartTime.ToLocalTime();
+                EndTime = EndTime.ToLocalTime();
             }
         }
         public DateTimeModel(string forecastItem, bool isForecastItem)
