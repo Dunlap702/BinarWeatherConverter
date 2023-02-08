@@ -24,7 +24,7 @@
 
     <DockPanel Background="Black">
 
-        <Menu DockPanel.Dock="Top" Background="{StaticResource MenuBackground}" Foreground="White">
+        <Menu DockPanel.Dock="Top" Background="{StaticResource MenuBackground}" Foreground="DarkGray">
             <MenuItem Header="Station" FontWeight="Bold">
                 <MenuItem Name="menuStation3" Header="Station 3" Click="menuStation3_Click" Background="{StaticResource MenuBackground}"/>
                 <MenuItem Name="menuStation7" Header="Station 7" Click="menuStation7_Click" Background="{StaticResource MenuBackground}"/>
@@ -42,7 +42,7 @@
             </MenuItem>
         </Menu>
 
-        <StatusBar DockPanel.Dock="Bottom" Background="{StaticResource MenuBackground}" Foreground="White">
+        <StatusBar DockPanel.Dock="Bottom" Background="{StaticResource MenuBackground}" Foreground="DarkGray">
             <StatusBarItem>
                 <TextBlock>
                     <Run Text="Last Updated"/>
@@ -112,14 +112,14 @@
                                        Text="{Binding MaxTempVM.ForecastedTemp.ForecastMaxTemp}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
-                                       Foreground="#FFC10707"
+                                       Foreground="IndianRed"
                                        Margin="2"/>
 
                                 <!--MinTemp-->
                                 <TextBlock Grid.Row="5"
                                        Text="{Binding MinTempVM.ForecastedTemp.ForecastMinTemp}"
                                        HorizontalAlignment="Center"
-                                       Foreground="Blue"
+                                       Foreground="CornflowerBlue"
                                        FontWeight="Bold"/>
                             </Grid>
                         </Border>

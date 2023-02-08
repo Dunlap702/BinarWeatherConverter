@@ -7,18 +7,18 @@
     <Application.Resources>
         <converter:LocationConverter x:Key="LocationConverter"/>
 
-        <SolidColorBrush x:Key="GeneralBackground" Color="DimGray"/>
+        <SolidColorBrush x:Key="GeneralText" Color="DarkGray"/>
 
-        <SolidColorBrush x:Key="GeneralText" Color="White"/>
+        <!--<SolidColorBrush x:Key="GeneralBackground" Color="#2c5364"/>-->
 
-        <!--<LinearGradientBrush x:Key="GeneralBackground" EndPoint="0,0" StartPoint="1,1">
-            <GradientStop Color="#C33764" Offset="0.05"/>
-            <GradientStop Color="#1D2671" Offset="0.75"/>
-        </LinearGradientBrush>-->
+        <LinearGradientBrush x:Key="GeneralBackground" EndPoint="0,0" StartPoint="0,1">
+            <GradientStop Color="#203a43" Offset="0.95"/>
+            <GradientStop Color="#2c5364" Offset="0.45"/>
+        </LinearGradientBrush>
 
-        <LinearGradientBrush x:Key="MenuBackground" EndPoint="0,0" StartPoint="1,1">
-            <GradientStop Color="#2E3192" Offset="0.75"/>
-            <GradientStop Color="#516395" Offset="0.10"/>
+        <LinearGradientBrush x:Key="MenuBackground" EndPoint="0,0" StartPoint="0,1">
+            <GradientStop Color="#203a43" Offset="0.5"/>
+            <GradientStop Color="#2c5364" Offset="0.05"/>
         </LinearGradientBrush>
 
     </Application.Resources>
