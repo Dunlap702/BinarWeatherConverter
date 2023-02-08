@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarWeatherConverter", "BinarWeatherConverter\BinarWeatherConverter.csproj", "{09104F2C-358B-49ED-95E8-EF39E6CB14C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarWeatherConverter", "BinarWeatherConverter\BinarWeatherConverter.csproj", "{09104F2C-358B-49ED-95E8-EF39E6CB14C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherConverterXUnitTests", "WeatherConverterXUnitTests\WeatherConverterXUnitTests.csproj", "{EADE60E7-9862-4387-B5B7-EB18E28C6A11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{09104F2C-358B-49ED-95E8-EF39E6CB14C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09104F2C-358B-49ED-95E8-EF39E6CB14C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09104F2C-358B-49ED-95E8-EF39E6CB14C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EADE60E7-9862-4387-B5B7-EB18E28C6A11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EADE60E7-9862-4387-B5B7-EB18E28C6A11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EADE60E7-9862-4387-B5B7-EB18E28C6A11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EADE60E7-9862-4387-B5B7-EB18E28C6A11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

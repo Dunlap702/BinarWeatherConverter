@@ -26,10 +26,7 @@ namespace BinarWeatherConverter.ViewModels
                 var replacedData = Regex.Replace(data, @"Â", "");
                 replacedData = Regex.Replace(replacedData, @"M", "-");
 
-                if (isMaxTemp)
-                    ForecastedTemp = new(replacedData, isMaxTemp);
-                else
-                    ForecastedTemp = new(replacedData, isMaxTemp);
+                ForecastedTemp = new(replacedData, isMaxTemp);
             }
         }
     }

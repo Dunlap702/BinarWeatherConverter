@@ -24,11 +24,11 @@
 
     <DockPanel Background="Black">
 
-        <Menu DockPanel.Dock="Top" Background="LightSteelBlue">
+        <Menu DockPanel.Dock="Top" Background="{StaticResource MenuBackground}" Foreground="White">
             <MenuItem Header="Station" FontWeight="Bold">
-                <MenuItem Name="menuStation3" Header="Station 3" Click="menuStation3_Click"/>
-                <MenuItem Name="menuStation7" Header="Station 7" Click="menuStation7_Click"/>
-                <MenuItem Name="menuExample" Header="Example" Click="menuExample_Click"/>
+                <MenuItem Name="menuStation3" Header="Station 3" Click="menuStation3_Click" Background="{StaticResource MenuBackground}"/>
+                <MenuItem Name="menuStation7" Header="Station 7" Click="menuStation7_Click" Background="{StaticResource MenuBackground}"/>
+                <MenuItem Name="menuExample" Header="Example" Click="menuExample_Click" Background="{StaticResource MenuBackground}"/>
             </MenuItem>
             <MenuItem FontWeight="Bold" Command="{Binding CommandRefresh}">
                 <MenuItem.Header>
@@ -42,7 +42,7 @@
             </MenuItem>
         </Menu>
 
-        <StatusBar DockPanel.Dock="Bottom" Background="LightSteelBlue">
+        <StatusBar DockPanel.Dock="Bottom" Background="{StaticResource MenuBackground}" Foreground="White">
             <StatusBarItem>
                 <TextBlock>
                     <Run Text="Last Updated"/>
@@ -50,7 +50,7 @@
                 </TextBlock>
             </StatusBarItem>
         </StatusBar>
-        
+
         <StackPanel>
 
             <!--Forecast Tiles-->
@@ -82,6 +82,7 @@
                                 <TextBlock Grid.Row="0"
                                 Text="{Binding DateTimeVM.DateTime.ForecastDate, StringFormat={}{0:ddd\, dd MMM}}"
                                        HorizontalAlignment="Center"
+                                       Foreground="{StaticResource GeneralText}"
                                        FontWeight="Bold"/>
 
                                 <!--Image: SkyConditions-->
@@ -94,6 +95,7 @@
                                 <TextBlock Grid.Row="2" 
                                        Text="{Binding SkyConditionVM.ForecastCondition.ForecastDisplay}"
                                        HorizontalAlignment="Center"
+                                       Foreground="{StaticResource GeneralText}"
                                        FontWeight="Bold"
                                        />
 
@@ -101,6 +103,7 @@
                                 <TextBlock Grid.Row="3"
                                        Text="{Binding WindViewModel.ForecastWind.ForecastWind}"
                                        HorizontalAlignment="Center"
+                                       Foreground="{StaticResource GeneralText}"
                                        FontWeight="Bold"
                                        Margin="2"/>
 
@@ -109,7 +112,7 @@
                                        Text="{Binding MaxTempVM.ForecastedTemp.ForecastMaxTemp}"
                                        HorizontalAlignment="Center"
                                        FontWeight="Bold"
-                                       Foreground="#FFA70A0A"
+                                       Foreground="#FFC10707"
                                        Margin="2"/>
 
                                 <!--MinTemp-->
@@ -164,6 +167,7 @@
                                 <!--Station/Status-->
                                 <TextBlock Grid.Row="0" Grid.Column="1" 
                                    Text="{Binding StationStatusVM.StationStatus.StationStatus}" 
+                                   Foreground="{StaticResource GeneralText}"
                                    HorizontalAlignment="Center"
                                    FontWeight="Bold"/>
 
@@ -181,12 +185,14 @@
                                        Margin="1"
                                       HorizontalAlignment="Right"
                                        VerticalAlignment="Center"
+                                       Foreground="{StaticResource GeneralText}"
                                       Visibility="{Binding Visibility, Converter={StaticResource VisibilityConverter}}"/>
                                 </Grid>
 
                                 <!--Date/Time-->
                                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateTimeVM.DateTime.AvationDisplay}" 
                                    HorizontalAlignment="Center"
+                                   Foreground="{StaticResource GeneralText}" 
                                    FontWeight="Bold"/>
 
                                 <!--Icing-->
