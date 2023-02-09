@@ -13,7 +13,9 @@
 
         <LinearGradientBrush x:Key="GeneralBackground" EndPoint="0,0" StartPoint="0,1">
             <GradientStop Color="#203a43" Offset="0.95"/>
-            <GradientStop Color="#2c5364" Offset="0.45"/>
+            <GradientStop Color="#2c5364" Offset="0.75"/>
+            <GradientStop Color="#2c5364" Offset="0.35"/>
+            <GradientStop Color="#203a43" Offset="0.05"/>
         </LinearGradientBrush>
 
         <LinearGradientBrush x:Key="MenuBackground" EndPoint="0,0" StartPoint="0,1">

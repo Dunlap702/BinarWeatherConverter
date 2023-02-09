@@ -10,16 +10,14 @@ namespace BinarWeatherConverter.Commands
 {
     public class Command : ICommand
     {
+        private Action ToExecute;
+        private Action<object> ToExecuteObject;
+        public event EventHandler? CanExecuteChanged;
+
         public Command(Action toExecute)
         {
             ToExecute = toExecute;
         }
-
-        private Action ToExecute;
-
-        private Action<object> ToExecuteObject;
-
-        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(object? parameter)
         {

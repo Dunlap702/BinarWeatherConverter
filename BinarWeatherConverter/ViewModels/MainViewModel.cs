@@ -9,22 +9,10 @@ namespace BinarWeatherConverter.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public enum LocationType
-        {
-            Station3,
-            Station7,
-            [Description("This uses a local example that I made")]
-            Example
-        }
-         
         private FileWatcher watcher;
         private DateTime lastUpdated;
+        private LocationType selectedLocation;
 
-        public DateTime LastUpdated
-        {
-            get { return lastUpdated; }
-            set { lastUpdated = value; OnPropertyChanged(nameof(LastUpdated)); }
-        }
         public MainViewModel()
         {
             CommandRefresh = new Commands.Command(Refresh);
@@ -33,16 +21,18 @@ namespace BinarWeatherConverter.ViewModels
             watcher.FileWatcherEvent += Watcher_FileWatcherEvent;
         }
 
-        private void Watcher_FileWatcherEvent(object? sender, EventArgs e)
+        public enum LocationType
         {
-            System.Windows.Threading.Dispatcher dp = App.Current.Dispatcher;
-            if (dp.CheckAccess())
-                Refresh();
-            else
-            {
-                //Continue to invoke it until we find it
-                dp.Invoke(() => Watcher_FileWatcherEvent(sender, e));
-            }
+            Station3,
+            Station7,
+            [Description("This uses a local example that I made")]
+            Example
+        }
+         
+        public DateTime LastUpdated
+        {
+            get { return lastUpdated; }
+            set { lastUpdated = value; OnPropertyChanged(nameof(LastUpdated)); }
         }
 
         public LocationType SelectedLocation
@@ -57,15 +47,25 @@ namespace BinarWeatherConverter.ViewModels
 
         public ObservableCollection<WeatherTile> MyWeatherTiles { get; } = new();
         public ObservableCollection<ForecastTile> MyFocastTiles { get; } = new();
-
         public ICommand CommandRefresh { get; set; }
         public List<string> codeFilePaths = new();
-        private LocationType selectedLocation;
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Watcher_FileWatcherEvent(object? sender, EventArgs e)
+        {
+            System.Windows.Threading.Dispatcher dp = App.Current.Dispatcher;
+            if (dp.CheckAccess())
+                Refresh();
+            else
+            {
+                //Continue to invoke it until we find it
+                dp.Invoke(() => Watcher_FileWatcherEvent(sender, e));
+            }
         }
 
         public void ReadFile()

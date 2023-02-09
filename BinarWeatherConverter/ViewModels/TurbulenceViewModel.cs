@@ -7,7 +7,6 @@ namespace BinarWeatherConverter.ViewModels
     public class TurbulenceViewModel : BaseViewModel
     {
         public ObservableCollection<TurbulenceModel> Turbulence { get; set; } = new();
-
         public TurbulenceModel? WorstTurbulence { get; set; }
 
         public override void Evaluate(string[] data)

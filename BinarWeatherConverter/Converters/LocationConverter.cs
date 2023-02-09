@@ -14,17 +14,17 @@ namespace BinarWeatherConverter.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string ret = "Binar Weather Converter";
+            string appName = "Binar Weather Converter";
             if (value is MainViewModel.LocationType type)
             {
                 if (type == MainViewModel.LocationType.Station3)
-                    return $"{ret} - Station 3";
+                    return $"{appName} - Station 3";
                 else if (type == MainViewModel.LocationType.Station7)
-                    return $"{ret} - Station 7";
+                    return $"{appName} - Station 7";
                 else if (type == MainViewModel.LocationType.Example)
-                    return $"{ret} - Example";
+                    return $"{appName} - Example";
             }
-            return ret;
+            return appName;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

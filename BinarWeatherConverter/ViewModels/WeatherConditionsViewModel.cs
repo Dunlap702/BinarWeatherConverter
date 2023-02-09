@@ -8,6 +8,7 @@ namespace BinarWeatherConverter.ViewModels
     {
         public WeatherConditions? WorstWeather { get; set; }
         public List<WeatherConditions> WeatherConditions { get; set; } = new();
+
         public override void Evaluate(string[] data)
         {
             //input type ex: "SN", "+SN", "BLSN", "+BLSN"
@@ -26,6 +27,7 @@ namespace BinarWeatherConverter.ViewModels
             }
             WorstWeather = (WeatherConditions?)WorstCase();
         }
+
         public override object? WorstCase()
         {
             if (WeatherConditions.Any())
